@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Donor register(String name, String username, String email, String city, String postalcode,String address, BloodType bloodType ) {
+	public Donor register(String name, String username, String email, String city, String postalcode,String address, BloodType bloodType,Boolean isAvailable ) {
 		// TODO we should validate if username or email exists in DB
 		Donor user = new Donor();
 		String password = generatePassword();
@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
 		user.setBloodType(bloodType);
 		user.setCity(city);
 		user.setPostalCode(postalcode);
+		user.setAvailable(isAvailable);
 		try {
 			emailService.sendNewPasswordEmail(name, password, email);
 		} catch (Exception e) {

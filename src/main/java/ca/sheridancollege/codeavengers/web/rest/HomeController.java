@@ -2,6 +2,8 @@ package ca.sheridancollege.codeavengers.web.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,15 +21,24 @@ import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 public class HomeController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-
+	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);//or getClass();
 	@GetMapping(value = { "/", "" })
 	public List<Donor> findAllUsers() {
 		return userServiceImpl.findAll();
 	}
 
-	@PostMapping(value = { "/register", "register" })
+	@PostMapping(value ={"/register"})
 	public Donor register(@RequestBody Donor donor) {
-		return userServiceImpl.register(donor.getName(),donor.getUsername(),donor.getEmail(),donor.getCity(), donor.getPostalCode(), donor.getAddress(), donor.getBloodType());
+		LOGGER.info("User Register Fucntion invoced");
+		LOGGER.info("User name: "+donor.getName());
+		LOGGER.info("User username: " + donor.getUsername());
+		LOGGER.info("User email: " + donor.getEmail());
+		LOGGER.info("User city: " + donor.getCity());
+		LOGGER.info("User postalcode: " + donor.getPostalCode());
+		LOGGER.info("User isAvailable: " + donor.isAvailable());
+		LOGGER.info("User BloodType: "+donor.getBloodType());
+		
+		return userServiceImpl.register(donor.getName(),donor.getUsername(),donor.getEmail(),donor.getCity(), donor.getPostalCode(), donor.getAddress(), donor.getBloodType(), donor.isAvailable());
 	}
 
 	@PostMapping(value = { "/", "" })
