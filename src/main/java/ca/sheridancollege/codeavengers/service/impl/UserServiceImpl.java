@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
-import ca.sheridancollege.codeavengers.domain.User;
+import ca.sheridancollege.codeavengers.domain.Donor;
 import ca.sheridancollege.codeavengers.repositories.UserRepository;
 import ca.sheridancollege.codeavengers.service.EmailService;
 import ca.sheridancollege.codeavengers.service.UserService;
@@ -20,25 +20,27 @@ public class UserServiceImpl implements UserService {
 	private EmailService emailService;
 
 	@Override
-	public List<User> findAll() {
+	public List<Donor> findAll() {
 		return userRepository.findAll();
 	}
 
 	@Override
-	public User save(User user) {
+	public Donor save(Donor user) {
 		return userRepository.save(user);
 	}
 
 	@Override
-	public User register(String name, String username, String email, String city, String postalcode) {
+	public Donor register(String name, String username, String email, String city, String postalcode,String address, BloodType bloodType ) {
 		// TODO we should validate if username or email exists in DB
-		User user = new User();
+		Donor user = new Donor();
 		String password = generatePassword();
 		String userID = generateUserId();
 		user.setName(name);
 		user.setUsername(username);
 		user.setEmail(email);
 		user.setUserId(userID);
+		user.setAddress(address);
+		user.setBloodType(bloodType);
 		user.setCity(city);
 		user.setPostalCode(postalcode);
 		try {
@@ -50,18 +52,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUserByEmail(String email) {
+	public Donor findUserByEmail(String email) {
 		// TODO can be used for validation or sending emails
 		return null;
 	}
 
 	@Override
-	public List<User> findUserByCity(String city) {
+	public List<Donor> findUserByCity(String city) {
 		return userRepository.findUserByCity(city);
 	}
 
 	@Override
-	public List<User> findUserByBloodType(BloodType bloodType) {
+	public List<Donor> findUserByBloodType(BloodType bloodType) {
 		return userRepository.findUserByBloodType(bloodType);
 	}
 
@@ -71,7 +73,7 @@ public class UserServiceImpl implements UserService {
 	// }
 
 	@Override
-	public User findUserByUsername(String username) {
+	public Donor findUserByUsername(String username) {
 		return userRepository.findUserByUsername(username);
 	}
 
@@ -84,13 +86,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUserByPostalCode(String postalcode) {
+	public Donor findUserByPostalCode(String postalcode) {
 		return userRepository.findUserByPostalCode(postalcode);
 	}
 
 	@Override
 	public void sendRequest(String username) {
-		User user = userRepository.findUserByUsername(username);
+		Donor user = userRepository.findUserByUsername(username);
 		String email = user.getEmail();
 		try {
 

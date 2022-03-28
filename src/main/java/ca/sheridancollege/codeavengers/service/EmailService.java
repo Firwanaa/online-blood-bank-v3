@@ -31,7 +31,7 @@ import com.sun.mail.smtp.SMTPTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ca.sheridancollege.codeavengers.domain.User;
+import ca.sheridancollege.codeavengers.domain.Donor;
 import ca.sheridancollege.codeavengers.repositories.UserRepository;
 
 @Service
@@ -107,8 +107,8 @@ public class EmailService {
 
 	public void sendEmergencyRequest()
 			throws MessagingException {
-		List<User> userList = userRepository.findAll();
-		for (User user : userList) {
+		List<Donor> userList = userRepository.findAll();
+		for (Donor user : userList) {
 			Message message = createRequest(user.getUsername(), user.getEmail(), FROM_EMAIL);
 			SMTPTransport smtpTransport = (SMTPTransport) getEmailSession()
 					.getTransport(SIMPLE_MAIL_TRANSFER_PROTOCOL);

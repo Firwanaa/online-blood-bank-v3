@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Donor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,7 @@ public class User {
 	// @Indexed(unique = true)
 	private String email;
 	private String city;
+	private String address;
 	@Enumerated(EnumType.STRING)
 	private BloodType bloodType;
 	private String postalCode;

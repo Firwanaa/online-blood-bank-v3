@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
 import ca.sheridancollege.codeavengers.domain.Institution;
-import ca.sheridancollege.codeavengers.domain.User;
+import ca.sheridancollege.codeavengers.domain.Donor;
 import ca.sheridancollege.codeavengers.repositories.InstitutionRepository;
 import ca.sheridancollege.codeavengers.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -31,7 +31,7 @@ public class BootStrapData implements CommandLineRunner {
 				.postalCode("L2S 4FD")
 				.build();
 
-		User u1 = User.builder()
+		Donor u1 = Donor.builder()
 				.name("Alqasasm Firwana")
 				.username("Firwanaa123")
 				.email("firwanaa@sheridancollege.ca")
@@ -41,7 +41,7 @@ public class BootStrapData implements CommandLineRunner {
 				.bloodType(BloodType.ABNeg)
 				.build();
 
-		User u2 = User.builder()
+		Donor u2 = Donor.builder()
 				.name("Doe")
 				.username("Doe123")
 				.email("Doe123@email.ca")
@@ -50,7 +50,7 @@ public class BootStrapData implements CommandLineRunner {
 				.postalCode("L3A 4R2")
 				.bloodType(BloodType.ANeg)
 				.build();
-		User u3 = User.builder()
+		Donor u3 = Donor.builder()
 				.name("Jack")
 				.username("Jack123")
 				.email("jack123@email.ca")
@@ -59,7 +59,7 @@ public class BootStrapData implements CommandLineRunner {
 				.postalCode("L5B 4T2")
 				.bloodType(BloodType.BPos)
 				.build();
-		User u4 = User.builder()
+		Donor u4 = Donor.builder()
 				.name("Sally")
 				.username("Sally123")
 				.email("sally123@email.ca")
@@ -68,7 +68,7 @@ public class BootStrapData implements CommandLineRunner {
 				.postalCode("L3Z 4R2")
 				.bloodType(BloodType.ONeg)
 				.build();
-		User u5 = User.builder()
+		Donor u5 = Donor.builder()
 				.name("Sam")
 				.username("Sam123")
 				.email("sam123@email.ca")
@@ -77,7 +77,7 @@ public class BootStrapData implements CommandLineRunner {
 				.postalCode("L4U 4R2")
 				.bloodType(BloodType.ANeg)
 				.build();
-		User u6 = User.builder()
+		Donor u6 = Donor.builder()
 				.name("Anna")
 				.username("Anna123")
 				.email("anna123@email.ca")

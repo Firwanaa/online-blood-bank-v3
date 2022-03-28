@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DonorService } from './donor/donorr.service'
+import { DonorService } from './donor/donor.service'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DonorComponent } from './donor/donor.component';

@@ -11,34 +11,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
-import ca.sheridancollege.codeavengers.domain.User;
+import ca.sheridancollege.codeavengers.domain.Donor;
 import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 
 @RestController
-@RequestMapping(path = { "/", "/user" })
+@RequestMapping("/api/donor")
 public class HomeController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
 	@GetMapping(value = { "/", "" })
-	public List<User> findAllUsers() {
+	public List<Donor> findAllUsers() {
 		return userServiceImpl.findAll();
 	}
 
+	@PostMapping(value = { "/register", "register" })
+	public Donor register(@RequestBody Donor donor) {
+		return userServiceImpl.register(donor.getName(),donor.getUsername(),donor.getEmail(),donor.getCity(), donor.getPostalCode(), donor.getAddress(), donor.getBloodType());
+	}
+
 	@PostMapping(value = { "/", "" })
-	public User save(@RequestBody User user) {
+	public Donor save(@RequestBody Donor user) {
 		return userServiceImpl.save(user);
 	}
 
 	@GetMapping("/findbycity/{city}")
-	public List<User> findByUsername(@PathVariable("city") String city) {
-		List<User> userList = userServiceImpl.findUserByCity(city);
+	public List<Donor> findByUsername(@PathVariable("city") String city) {
+		List<Donor> userList = userServiceImpl.findUserByCity(city);
 		return userList;
 	}
 
 	// not complete
 	@GetMapping("/sendrequest/{username}")
-	public User sendRequest(@PathVariable("username") String username) {
+	public Donor sendRequest(@PathVariable("username") String username) {
 		userServiceImpl.sendRequest(username);
 		System.out.println("Username: " + username);
 		return null;
@@ -50,14 +55,14 @@ public class HomeController {
 	}
 
 	@GetMapping("/findbypostalcode/{postalcode}")
-	public User findByPostalCode(@PathVariable("postalcode") String postalcode) {
-		User user = userServiceImpl.findUserByPostalCode(postalcode);
+	public Donor findByPostalCode(@PathVariable("postalcode") String postalcode) {
+		Donor user = userServiceImpl.findUserByPostalCode(postalcode);
 		return user;
 	}
 
 	@GetMapping("/findbybloodtype/{bloodtype}")
-	public List<User> findByBloodType(@PathVariable("bloodtype") String bloodtype) {
-		List<User> userList = userServiceImpl.findUserByBloodType(BloodType.valueOf(bloodtype));
+	public List<Donor> findByBloodType(@PathVariable("bloodtype") String bloodtype) {
+		List<Donor> userList = userServiceImpl.findUserByBloodType(BloodType.valueOf(bloodtype));
 		return userList;
 	}
 }

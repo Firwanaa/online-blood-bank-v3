@@ -6,21 +6,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
-import ca.sheridancollege.codeavengers.domain.User;
+import ca.sheridancollege.codeavengers.domain.Donor;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-	List<User> findAll();
+public interface UserRepository extends JpaRepository<Donor, Long> {
+	List<Donor> findAll();
 
-	User findUserByUsername(String username);
+	Donor findUserByUsername(String username);
 
-	User findUserByEmail(String email);
+	Donor findUserByEmail(String email);
 
-	List<User> findUserByCity(String city);
+	List<Donor> findUserByCity(String city);
 
-	User findUserByPostalCode(String postalCode);
+	Donor findUserByPostalCode(String postalCode);
 
 	// List<User> findAllByPostalCode( );
 
-	List<User> findUserByBloodType(BloodType bloodType);
+	List<Donor> findUserByBloodType(BloodType bloodType);
 }
