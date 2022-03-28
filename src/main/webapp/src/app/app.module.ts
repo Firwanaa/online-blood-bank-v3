@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DonnerService } from './donner/donner.service'
+import { DonorService } from './donor/donorr.service'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DonnerComponent } from './donner/donner.component';
-import { DonnerAddComponent } from './donner/donner-add/donner-add.component';
-import { DonnerListComponent } from './donner/donner-list/donner-list.component';
+import { DonorComponent } from './donor/donor.component';
+import { DonorAddComponent } from './donor/donor-add/donor-add.component';
+import { DonorListComponent } from './donor/donor-list/donor-list.component';
 import { HeaderComponent } from './header/header.component';
 import { NotifierModule } from 'angular-notifier';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,9 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    DonnerComponent,
-    DonnerAddComponent,
-    DonnerListComponent,
+    DonorComponent,
+    DonorAddComponent,
+    DonorListComponent,
     HeaderComponent
   ],
   imports: [
@@ -29,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
             },
         }),
   ],
-  providers: [DonnerService],
+  providers: [DonorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

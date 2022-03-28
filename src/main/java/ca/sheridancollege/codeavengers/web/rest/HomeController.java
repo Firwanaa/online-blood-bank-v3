@@ -44,6 +44,11 @@ public class HomeController {
 		return null;
 	}
 
+	@GetMapping("/emergencyrequest")
+	public void sendEmergencyRequest() {
+		userServiceImpl.sendEmergencyRequest();
+	}
+
 	@GetMapping("/findbypostalcode/{postalcode}")
 	public User findByPostalCode(@PathVariable("postalcode") String postalcode) {
 		User user = userServiceImpl.findUserByPostalCode(postalcode);

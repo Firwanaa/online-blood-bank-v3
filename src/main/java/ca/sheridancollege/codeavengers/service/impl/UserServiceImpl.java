@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 
 	// @Override
 	// public List<User> findAllByPostalCode() {
-	// 	return userRepository.findAllByPostalCode();
+	// return userRepository.findAllByPostalCode();
 	// }
 
 	@Override
@@ -92,11 +92,23 @@ public class UserServiceImpl implements UserService {
 	public void sendRequest(String username) {
 		User user = userRepository.findUserByUsername(username);
 		String email = user.getEmail();
-		try{
+		try {
 
-		emailService.sendDonationRequest(username, email);
-		} catch (Exception e) {e.printStackTrace();}
-			
+			emailService.sendDonationRequest(username, email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void sendEmergencyRequest() {
+		try {
+
+			emailService.sendEmergencyRequest();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
