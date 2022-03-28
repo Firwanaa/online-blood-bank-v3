@@ -1,6 +1,4 @@
 # online-blood-bank-v3
-
-# online-blood-bank
 A Capstone project: An Idea to create an Online Banking System 
 
 
