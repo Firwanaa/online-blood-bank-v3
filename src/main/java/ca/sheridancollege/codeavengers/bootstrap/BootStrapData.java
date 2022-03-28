@@ -1,10 +1,12 @@
 package ca.sheridancollege.codeavengers.bootstrap;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
+import ca.sheridancollege.codeavengers.domain.Institution;
 import ca.sheridancollege.codeavengers.domain.User;
 import ca.sheridancollege.codeavengers.repositories.InstitutionRepository;
 import ca.sheridancollege.codeavengers.repositories.UserRepository;
@@ -21,11 +23,18 @@ public class BootStrapData implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Institution inst1 = Institution.builder()
+				.userId(generateUserId())
+				.name("Blood Institution #1")
+				.username("inst1")
+				.city("Mississuaga")
+				.postalCode("L2S 4FD")
+				.build();
 
 		User u1 = User.builder()
-				.name("Joe")
-				.username("Joe123")
-				.email("joe123@email.ca")
+				.name("Alqasasm Firwana")
+				.username("Firwanaa123")
+				.email("firwanaa@sheridancollege.ca")
 				.city("Mississuaga")
 				.postalCode("L3Z 4R2")
 				.bloodType(BloodType.ABNeg)
@@ -77,7 +86,12 @@ public class BootStrapData implements CommandLineRunner {
 		userRepository.save(u4);
 		userRepository.save(u5);
 		userRepository.save(u6);
+		institutionRepository.save(inst1);
 
+	}
+
+	private String generateUserId() {
+		return RandomStringUtils.randomNumeric(10);
 	}
 
 }

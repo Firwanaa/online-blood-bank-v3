@@ -4,7 +4,7 @@ public class EmailConstants {
 	public static final String SIMPLE_MAIL_TRANSFER_PROTOCOL = "smtps";
 	public static final String USERNAME = "online.blood.bank.ca@gmail.com";
 	public static final String PASSWORD = "N8NLh6JeqA8nz7R";
-	public static final String FROM_EMAIL = "online.blood.bank.ca@gmail.com";
+	public static final String FROM_EMAIL = "support@onlinebloodbank.ca";
 	public static final String CC_EMAIL = "";
 	public static final String EMAIL_SUBJECT = "Online BloodBank, CA - New Password";
 	public static final String GMAIL_SMTP_SERVER = "smtp.gmail.com";

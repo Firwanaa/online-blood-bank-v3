@@ -88,4 +88,15 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findUserByPostalCode(postalcode);
 	}
 
+	@Override
+	public void sendRequest(String username) {
+		User user = userRepository.findUserByUsername(username);
+		String email = user.getEmail();
+		try{
+
+		emailService.sendDonationRequest(username, email);
+		} catch (Exception e) {e.printStackTrace();}
+			
+	}
+
 }
