@@ -37,6 +37,12 @@ public class HomeController {
 		return userList;
 	}
 
+	@GetMapping("/sendRequest/{cit}")
+	public List<User> findByUsername(@PathVariable("city") String city) {
+		List<User> userList = userServiceImpl.findUserByCity(city);
+		return userList;
+	}
+
 	@GetMapping("/findbypostalcode/{postalcode}")
 	public User findByPostalCode(@PathVariable("postalcode") String postalcode) {
 		User user = userServiceImpl.findUserByPostalCode(postalcode); 
