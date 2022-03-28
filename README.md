@@ -27,3 +27,7 @@ A Capstone project: An Idea to create an Online Banking System
   `git pull`
 * To delete branch
   `git branch -D branchName`
+
+### Notes: 
+* ##### BE: Backend "Spring Boot API"
+* ##### FE: Frontend "Angular Frontend"
