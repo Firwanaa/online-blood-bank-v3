@@ -36,6 +36,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Firwanaa123")
 				.email("firwanaa@sheridancollege.ca")
 				.city("Mississuaga")
+				.isAvailable(true)
 				.postalCode("L3Z 4R2")
 				.bloodType(BloodType.ABNeg)
 				.build();
@@ -45,6 +46,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Doe123")
 				.email("Doe123@email.ca")
 				.city("Mississuaga")
+				.isAvailable(true)
 				.postalCode("L3A 4R2")
 				.bloodType(BloodType.ANeg)
 				.build();
@@ -53,6 +55,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Jack123")
 				.email("jack123@email.ca")
 				.city("Mississuaga")
+				.isAvailable(false)
 				.postalCode("L5B 4T2")
 				.bloodType(BloodType.BPos)
 				.build();
@@ -61,6 +64,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Sally123")
 				.email("sally123@email.ca")
 				.city("Mississuaga")
+				.isAvailable(false)
 				.postalCode("L3Z 4R2")
 				.bloodType(BloodType.ONeg)
 				.build();
@@ -69,6 +73,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Sam123")
 				.email("sam123@email.ca")
 				.city("Mississuaga")
+				.isAvailable(true)
 				.postalCode("L4U 4R2")
 				.bloodType(BloodType.ANeg)
 				.build();
@@ -76,6 +81,7 @@ public class BootStrapData implements CommandLineRunner {
 				.name("Anna")
 				.username("Anna123")
 				.email("anna123@email.ca")
+				.isAvailable(true)
 				.city("Mississuaga")
 				.postalCode("L3S 3R2")
 				.bloodType(BloodType.OPos)
