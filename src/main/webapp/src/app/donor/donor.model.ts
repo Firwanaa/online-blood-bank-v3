@@ -12,7 +12,7 @@
 	// private BloodType bloodType;
 	// private String postalCode;
 	// private boolean isAvailable;
-  export class Donner {
+  export class Donor {
     // public id: number;
     public userID: string;
     public name: string;
