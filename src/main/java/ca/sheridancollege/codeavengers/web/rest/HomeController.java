@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
 import ca.sheridancollege.codeavengers.domain.User;
-import ca.sheridancollege.codeavengers.service.impl.InstitutionServiceImpl;
 import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 
 @RestController
@@ -37,16 +36,17 @@ public class HomeController {
 		return userList;
 	}
 
-	//not complete
-	@GetMapping("/sendRequest/{cit}")
-	public List<User> sendRequest(@PathVariable("city") String city) {
-		List<User> userList = userServiceImpl.findUserByCity(city);
-		return userList;
+	// not complete
+	@GetMapping("/sendrequest/{username}")
+	public User sendRequest(@PathVariable("username") String username) {
+		userServiceImpl.sendRequest(username);
+		System.out.println("Username: " + username);
+		return null;
 	}
 
 	@GetMapping("/findbypostalcode/{postalcode}")
 	public User findByPostalCode(@PathVariable("postalcode") String postalcode) {
-		User user = userServiceImpl.findUserByPostalCode(postalcode); 
+		User user = userServiceImpl.findUserByPostalCode(postalcode);
 		return user;
 	}
 

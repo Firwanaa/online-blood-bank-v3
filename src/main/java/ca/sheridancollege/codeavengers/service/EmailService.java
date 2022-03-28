@@ -51,9 +51,9 @@ public class EmailService {
 	}
 
 	// not finished
-	public void sendDonationRequest(String username, String email, String institutionName)
+	public void sendDonationRequest(String username, String email)
 			throws MessagingException {
-		Message message = createRequest(username, email, institutionName);
+		Message message = createRequest(username, email, FROM_EMAIL);
 		SMTPTransport smtpTransport = (SMTPTransport) getEmailSession()
 				.getTransport(SIMPLE_MAIL_TRANSFER_PROTOCOL);
 		smtpTransport.connect(GMAIL_SMTP_SERVER, USERNAME, PASSWORD);

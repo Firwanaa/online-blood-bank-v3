@@ -15,6 +15,7 @@ public interface UserService {
 	List<User> findUserByCity(String city);
 	List<User> findUserByBloodType(BloodType bloodType);
 	User findUserByPostalCode(String postalcode);
+	void sendRequest(String username);
 	// List<User> findAllByPostalCode();
 	
 }
