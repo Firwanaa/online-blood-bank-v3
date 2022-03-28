@@ -37,8 +37,9 @@ public class HomeController {
 		return userList;
 	}
 
+	//not complete
 	@GetMapping("/sendRequest/{cit}")
-	public List<User> findByUsername(@PathVariable("city") String city) {
+	public List<User> sendRequest(@PathVariable("city") String city) {
 		List<User> userList = userServiceImpl.findUserByCity(city);
 		return userList;
 	}
