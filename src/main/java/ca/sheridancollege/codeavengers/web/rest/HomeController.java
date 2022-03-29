@@ -47,8 +47,10 @@ public class HomeController {
 	}
 
 	@GetMapping("/findbycity/{city}")
-	public List<Donor> findByUsername(@PathVariable("city") String city) {
+	public List<Donor> findByCity(@PathVariable("city") String city) {
+		System.out.println("test " + city);
 		List<Donor> userList = userServiceImpl.findUserByCity(city);
+		System.out.println("work ");
 		return userList;
 	}
 
@@ -76,4 +78,5 @@ public class HomeController {
 		List<Donor> userList = userServiceImpl.findUserByBloodType(BloodType.valueOf(bloodtype));
 		return userList;
 	}
+
 }

@@ -1,1 +1,40 @@
-<p>donner-list works!</p>
+<div class="inlineDiv">
+<div class="form-row">
+	<input placeholder="Search by City" [(ngModel)]="city" />
+
+	<button type="submit" (click)="SearchCity(city)"
+		class="btn btn-primary">Submit</button>
+</div>
+<div>
+	<select class="custom-select" name="bloodType" required
+		(keyup.enter)="SearchBloodType(bloodType)" [(ngModel)]="bloodType">
+		<!--<option selected></option>-->
+		<option [value]="bloodType" *ngFor="let bloodType of bloodTypes">{{ bloodType }}</option>
+	</select>
+	<button type="submit" (click)="SearchBloodType(bloodType)"
+		class="btn btn-primary">Submit</button>
+</div>
+<div>
+	<button class="btn btn-danger" (click)="EmergencyRequest()">SendEmergency Request To All</button>
+</div>
+</div>
+<table style="width: -webkit-fill-available;">
+	<tr>
+		<th>Name</th>
+		<th>Username</th>
+		<th>Email</th>
+		<th>Blood Type</th>
+
+	</tr>
+	<ng-container *ngFor="let donners of donners">
+
+	<tr>
+		<td>{{donners.name}}</td>
+		<td>{{donners.username}}</td>
+		<td>{{donners.email}}</td>
+		<td>{{donners.bloodType}}</td>
+	</tr>
+	</ng-container>
+
+
+</table>
