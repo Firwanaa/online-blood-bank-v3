@@ -101,21 +101,47 @@ export class DonorAddComponent implements OnInit {
         // Do some stuff
         this.formattedAddress = address.formatted_address;
         // this.address = address.formatted_address;
-        this.city = address.address_components[3].long_name;
-        this.postalCode = address.address_components[7].long_name;
+        // this.city = address.address_components[3].long_name;
+        // this.postalCode = address.address_components['postcode'];
+        for (var i = 0; i < address.address_components.length; i++) {
+            for (
+                var j = 0;
+                j < address.address_components[i].types.length;
+                j++
+            ) {
+                if (address.address_components[i].types[j] == 'postal_code') {
+                    this.postalCode = address.address_components[i].long_name;
+                }
+            }
+        }
+
+        for (var i = 0; i < address.address_components.length; i++) {
+            for (
+                var j = 0;
+                j < address.address_components[i].types.length;
+                j++
+            ) {
+                if (address.address_components[i].types[j] == 'locality') {
+                    this.city = address.address_components[i].long_name;
+                    console.log("****** City",this.city);
+                }
+            }
+        }
+
         console.log(address.geometry);
         console.log(address.formatted_address);
         console.log(address.address_components.length);
-        console.log(address.address_components[0]);
-        console.log(address.address_components[1]);
-        console.log(address.address_components[2]);
-        console.log(address.address_components[3]);
-        console.log(address.address_components[4]);
-        console.log(address.address_components[5]);
-        console.log(address.address_components[6]);
-        console.log(address.address_components[7]);
-        console.log(address.address_components[8]);
-        console.log(address.address_components[9]);
-        console.log(address.address_components[10]);
+        console.log(address.address_components);
+        // console.log(address.address_components[0]);
+        // console.log(address.address_components[1]);
+        // console.log(address.address_components[2]);
+        // console.log(address.address_components[3]);
+        // console.log(address.address_components[4]);
+        // console.log(address.address_components[5]);
+        // console.log(address.address_components[6]);
+        // console.log(address.address_components[7]);
+        // console.log(address.address_components[8]);
+        // console.log(address.address_components[9]);
+        // console.log(address.address_components[10]);
     }
 }
