@@ -1,50 +1,114 @@
 
 
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="name">Name</label>
+        <input
+            (keyup.enter)="onDonorAdd($event)"
+            [(ngModel)]="name"
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Name"
+        />
+    </div>
+    <div class="form-group col-md-6">
+        <label for="username">Username</label>
+        <input
+            (keyup.enter)="onDonorAdd($event)"
+            [(ngModel)]="username"
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Username"
+        />
+    </div>
+    <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input
+            type="email"
+            class="form-control"
+            id="inputEmail4"
+            placeholder="Email"
+            (keyup.enter)="onDonorAdd($event)"
+            [(ngModel)]="email"
+        />
+    </div>
+        <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input
+            autocomplete="off"
+            ngx-google-places-autocomplete
+            [options]="options"
+            #placesRef="ngx-places"
+            (onAddressChange)="handleAddressChange($event)"
+            (keyup.enter)="onDonorAdd($event)"
+            [(ngModel)]="address"
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="7897 McLaughlin Rd"
+        />
+    </div>
+    <!-- <input
+        ngx-google-places-autocomplete
+        [options]="options"
+        #placesRef="ngx-places"
+        (onAddressChange)="handleAddressChange($event)"
+    /> -->
+
+    <div class="form-group col-md-2">
+        <label for="inputZip">Postal Code</label>
+        <input
+            type="text"
+            class="form-control"
+            id="inputZip"
+            (keyup.enter)="onDonorAdd($event)"
+            [(ngModel)]="postalCode"
+        />
+    </div>
+
+
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="name">Name</label>
+            <label for="inputCity">City</label>
             <input
-                (keyup.enter)="onDonorAdd($event)"
-                [(ngModel)]="name"
                 type="text"
                 class="form-control"
-                id="name"
-                placeholder="Name"
+                id="inputCity"
+                (keyup.enter)="onDonorAdd($event)"
+                [(ngModel)]="city"
             />
         </div>
-        <div class="form-group col-md-6">
-            <label for="username">Username</label>
+    </div>
+    <div>
+        <select
+            class="custom-select"
+            name="bloodType"
+            required
+            (keyup.enter)="onDonorAdd($event)"
+            [(ngModel)]="bloodType"
+        >
+            <!--<option selected></option>-->
+            <option [value]="bloodType" *ngFor="let bloodType of bloodTypes">
+                {{ bloodType }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
             <input
+                class="form-check-input"
+                type="checkbox"
+                id="gridCheck"
                 (keyup.enter)="onDonorAdd($event)"
-                [(ngModel)]="username"
-                type="text"
-                class="form-control"
-                id="username"
-                placeholder="Username"
+                [(ngModel)]="isAvailable"
             />
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input
-                type="email"
-                class="form-control"
-                id="inputEmail4"
-                placeholder="Email"
-                (keyup.enter)="onDonorAdd($event)"
-                [(ngModel)]="email"
-            />
+            <label class="form-check-label" for="gridCheck">
+                Availability
+            </label>
         </div>
 
-        <div class="form-group col-md-2">
-            <label for="inputZip">Postal Code</label>
-            <input
-                type="text"
-                class="form-control"
-                id="inputZip"
-                (keyup.enter)="onDonorAdd($event)"
-                [(ngModel)]="postalCode"
-            />
-        </div>
         <div class="form-group">
             <label for="inputAddress">Address</label>
             <input
@@ -105,9 +169,10 @@
             class="btn btn-primary"
         >
             Submit
-        </button>
-        
-        
-        
-    </div>
+        </button>   
 
+    </div>
+    <button type="submit" (click)="onDonorAdd($event)" class="btn btn-primary">
+        Submit
+    </button>
+</div>
