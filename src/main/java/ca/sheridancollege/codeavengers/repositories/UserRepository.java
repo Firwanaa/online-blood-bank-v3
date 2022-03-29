@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<Donor, Long> {
 
 	Donor findUserByEmail(String email);
 
-	List<Donor> findUserByCity(String city);
+	List<Donor> findByCity(String city);
 
 	Donor findUserByPostalCode(String postalCode);
 

@@ -9,8 +9,12 @@ export class DonorService {
     constructor(private http: HttpClient) {}
 
     getDonors() {
-        return this.http.get<Donor[]>('/api/donor');
+        return this.http.get<Donor[]>('/api/donor/');
     }
+    
+    sendEmergencyRequest(){
+	return this.http.get('/api/donor/emergencyrequest');
+}
     addDonor(donor: Donor) {
         return this.http.post('/api/donor/register', donor);
     }
@@ -21,8 +25,8 @@ export class DonorService {
         );
     }
 
-    findByCity(username: String) {
-        return this.http.get<Donor[]>(`/api/donor/findbycity/${username}`);
+    findByCity(city: String) {
+        return this.http.get<Donor[]>(`/api/donor/findbycity/${city}`);
     }
 
     onDonorAdded = new EventEmitter<Donor>();

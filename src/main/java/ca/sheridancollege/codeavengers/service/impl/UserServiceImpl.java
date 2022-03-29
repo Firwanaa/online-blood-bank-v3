@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<Donor> findUserByCity(String city) {
-		return userRepository.findUserByCity(city);
+		return userRepository.findByCity(city);
 	}
 
 	@Override
