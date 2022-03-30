@@ -12,12 +12,12 @@ import { NotificationService } from 'src/app/service/notification.service';
 export class DonorListComponent implements OnInit {
 
 
-	donners: Donor[] = [];
+	donors: Donor[] = [];
 	username: String;
 	bloodType: BloodType;
 	public bloodTypes = Object.values(BloodType);
 	city: String = ''
-   
+
 
 
 	constructor(private donorService: DonorService,private notificationService: NotificationService) { }
@@ -25,8 +25,15 @@ export class DonorListComponent implements OnInit {
 	ngOnInit() {
 
 		this.donorService.getDonors().subscribe(
-			(donners: any[]) => {
-				this.donners = donners
+			(donors: any[]) => {
+				this.donors = donors
+                console.log(donors)
+                donors.forEach((d) => {
+                    console.log(d['available'])
+                });
+
+
+
 			},
 			(error) => console.log(error)
 		);
@@ -34,8 +41,8 @@ export class DonorListComponent implements OnInit {
 	}
 	SearchCity(city: String) {
 		this.donorService.findByCity(this.city.toString()).subscribe(
-			(donners: any[]) => {
-				this.donners = donners
+			(donors: any[]) => {
+				this.donors = donors
 			},
 			(error) => console.log(error)
 
@@ -43,13 +50,13 @@ export class DonorListComponent implements OnInit {
 	}
 	SearchBloodType(bloodType: BloodType) {
 		this.donorService.findByDonorBloodtype(bloodType).subscribe(
-			(donners: any[]) => {
-				this.donners = donners
+			(donors: any[]) => {
+				this.donors = donors
 			},
 			(error) => console.log(error)
 		);
 	}
-	
+
 	EmergencyRequest():void{
 	 this.donorService.sendEmergencyRequest();
 	 this.notificationService.notify('error', 'Emergency Declared');

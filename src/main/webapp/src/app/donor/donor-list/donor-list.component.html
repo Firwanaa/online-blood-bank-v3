@@ -1,40 +1,63 @@
 <div class="inlineDiv">
-<div class="form-row">
-	<input placeholder="Search by City" [(ngModel)]="city" />
+    <div class="form-row">
+        <input placeholder="Search by City" [(ngModel)]="city" />
 
-	<button type="submit" (click)="SearchCity(city)"
-		class="btn btn-primary">Submit</button>
+        <button
+            type="submit"
+            (click)="SearchCity(city)"
+            class="btn btn-primary"
+        >
+            Submit
+        </button>
+    </div>
+    <div>
+        <select
+            class="custom-select"
+            name="bloodType"
+            required
+            (keyup.enter)="SearchBloodType(bloodType)"
+            [(ngModel)]="bloodType"
+        >
+            <!--<option selected></option>-->
+            <option [value]="bloodType" *ngFor="let bloodType of bloodTypes">
+                {{ bloodType }}
+            </option>
+        </select>
+        <button
+            type="submit"
+            (click)="SearchBloodType(bloodType)"
+            class="btn btn-primary"
+        >
+            Submit
+        </button>
+    </div>
+    <div>
+        <button class="btn btn-danger" (click)="EmergencyRequest()">
+            SendEmergency Request To All
+        </button>
+    </div>
 </div>
-<div>
-	<select class="custom-select" name="bloodType" required
-		(keyup.enter)="SearchBloodType(bloodType)" [(ngModel)]="bloodType">
-		<!--<option selected></option>-->
-		<option [value]="bloodType" *ngFor="let bloodType of bloodTypes">{{ bloodType }}</option>
-	</select>
-	<button type="submit" (click)="SearchBloodType(bloodType)"
-		class="btn btn-primary">Submit</button>
-</div>
-<div>
-	<button class="btn btn-danger" (click)="EmergencyRequest()">SendEmergency Request To All</button>
-</div>
-</div>
-<table style="width: -webkit-fill-available;">
-	<tr>
-		<th>Name</th>
-		<th>Username</th>
-		<th>Email</th>
-		<th>Blood Type</th>
+<table style="width: -webkit-fill-available">
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Blood Type</th>
+        <th>Is available</th>
+    </tr>
+    <ng-container *ngFor="let donor of donors">
+        <tr>
+            <td>{{ donor.name }}</td>
+            <td>{{ donor.username }}</td>
+            <td>{{ donor.email }}</td>
+            <td>{{ donor.city }}</td>
+            <td>{{ donor.bloodType }}</td>
+            <td>
+                <span [hidden]="!donor['available']" class="badge bg-success">Available</span>
 
-	</tr>
-	<ng-container *ngFor="let donners of donners">
-
-	<tr>
-		<td>{{donners.name}}</td>
-		<td>{{donners.username}}</td>
-		<td>{{donners.email}}</td>
-		<td>{{donners.bloodType}}</td>
-	</tr>
-	</ng-container>
-
-
+                <span [hidden]="donor['available']" class="badge bg-danger">Unavailable</span>
+            </td>
+        </tr>
+    </ng-container>
 </table>
