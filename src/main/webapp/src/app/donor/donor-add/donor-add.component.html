@@ -1,5 +1,3 @@
-
-
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="name">Name</label>
@@ -34,13 +32,13 @@
             [(ngModel)]="email"
         />
     </div>
-        <div class="form-group">
+    <div class="form-group">
         <label for="inputAddress">Address</label>
         <input
             autocomplete="off"
             ngx-google-places-autocomplete
-               [options]="options"
-             #placesRef="ngx-places"
+            [options]="options"
+            #placesRef="ngx-places"
             (onAddressChange)="handleAddressChange($event)"
             (keyup.enter)="onDonorAdd($event)"
             [(ngModel)]="address"
@@ -67,7 +65,6 @@
             [(ngModel)]="postalCode"
         />
     </div>
-
 
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -108,69 +105,6 @@
                 Availability
             </label>
         </div>
-
-        <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input
-                (keyup.enter)="onDonorAdd($event)"
-                [(ngModel)]="address"
-                type="text"
-                class="form-control"
-                id="inputAddress"
-                placeholder="1234 Main St"
-            />
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="inputCity"
-                    (keyup.enter)="onDonorAdd($event)"
-                    [(ngModel)]="city"
-                />
-            </div>
-        </div>
-        <div>
-            <select class="custom-select" name="bloodType" required
-                (keyup.enter)="onDonorAdd($event)"
-                [(ngModel)]="bloodType"
-            >
-                <!--<option selected></option>-->
-                <option
-                    [value]="bloodType"
-                    *ngFor="let bloodType of bloodTypes"
-                >
-                    {{ bloodType }}
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="gridCheck"
-                    (keyup.enter)="onDonorAdd($event)"
-                    [(ngModel)]="isAvailable"
-                />
-                <label class="form-check-label" for="gridCheck">
-                    Availability
-                </label>
-            </div>
-        </div>
-        
-       
-        <button
-            type="submit"
-            (click)="onDonorAdd($event)"
-            class="btn btn-primary"
-        >
-            Submit
-        </button>   
-
     </div>
     <button type="submit" (click)="onDonorAdd($event)" class="btn btn-primary">
         Submit
