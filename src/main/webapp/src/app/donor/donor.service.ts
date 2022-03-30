@@ -14,7 +14,12 @@ export class DonorService {
     
     sendEmergencyRequest(){
 	return this.http.get('/api/donor/emergencyrequest');
-}
+    }
+    
+    findByIsAvailable(isAvailable: boolean){
+	     return this.http.get<Donor[]>(`/api/donor/findByAvailability/${isAvailable}`);
+    } 
+    
     addDonor(donor: Donor) {
         return this.http.post('/api/donor/register', donor);
     }

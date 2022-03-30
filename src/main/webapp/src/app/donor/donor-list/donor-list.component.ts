@@ -15,6 +15,7 @@ export class DonorListComponent implements OnInit {
 	donors: Donor[] = [];
 	username: String;
 	bloodType: BloodType;
+	isAvailable: boolean;
 	public bloodTypes = Object.values(BloodType);
 	city: String = ''
 
@@ -50,6 +51,15 @@ export class DonorListComponent implements OnInit {
 	}
 	SearchBloodType(bloodType: BloodType) {
 		this.donorService.findByDonorBloodtype(bloodType).subscribe(
+			(donors: any[]) => {
+				this.donors = donors
+			},
+			(error) => console.log(error)
+		);
+	}
+	
+	SearchAvailability(isAvailable: boolean){
+		this.donorService.findByIsAvailable(isAvailable).subscribe(
 			(donors: any[]) => {
 				this.donors = donors
 			},

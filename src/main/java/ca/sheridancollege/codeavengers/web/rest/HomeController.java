@@ -78,5 +78,12 @@ public class HomeController {
 		List<Donor> userList = userServiceImpl.findUserByBloodType(BloodType.valueOf(bloodtype));
 		return userList;
 	}
+	
+	@GetMapping("/findByAvailability/{isAvailable}")
+	public List<Donor> findByIsAvailable(@PathVariable("isAvailable" )boolean isAvailable) {
+		 List<Donor> userList = userServiceImpl.findByIsAvailable(isAvailable);
+		 return userList;
+		
+	}
 
 }

@@ -39,8 +39,8 @@
         <input
             autocomplete="off"
             ngx-google-places-autocomplete
-            [options]="options"
-            #placesRef="ngx-places"
+               [options]="options"
+             #placesRef="ngx-places"
             (onAddressChange)="handleAddressChange($event)"
             (keyup.enter)="onDonorAdd($event)"
             [(ngModel)]="address"

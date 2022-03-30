@@ -37,6 +37,18 @@
         </button>
     </div>
 </div>
+
+
+  <div>
+       <select [(ngModel)]="isAvailable">
+            <option [value]="true">Available</option>
+             <option [value]="false">Not Available</option>
+       </select>
+       <button class="btn btn-primary" (click)="SearchAvailability(isAvailable)">
+            Search Availability
+        </button>
+    </div>
+
 <table style="width: -webkit-fill-available">
     <tr>
         <th>Name</th>

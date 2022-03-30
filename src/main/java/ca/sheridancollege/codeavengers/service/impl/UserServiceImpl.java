@@ -67,6 +67,12 @@ public class UserServiceImpl implements UserService {
 	public List<Donor> findUserByBloodType(BloodType bloodType) {
 		return userRepository.findUserByBloodType(bloodType);
 	}
+	
+	@Override
+	public List<Donor> findByIsAvailable (boolean isAvailable){
+		
+		return userRepository.findByIsAvailable(isAvailable);
+	}
 
 	// @Override
 	// public List<User> findAllByPostalCode() {

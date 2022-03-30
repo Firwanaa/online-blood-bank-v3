@@ -17,6 +17,7 @@ public interface UserService {
 	Donor findUserByPostalCode(String postalcode);
 	void sendRequest(String username);
 	void sendEmergencyRequest();
+	List<Donor> findByIsAvailable (boolean isAvailable);
 	// List<User> findAllByPostalCode();
 	
 }

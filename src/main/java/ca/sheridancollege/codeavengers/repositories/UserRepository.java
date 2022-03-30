@@ -23,4 +23,7 @@ public interface UserRepository extends JpaRepository<Donor, Long> {
 	// List<User> findAllByPostalCode( );
 
 	List<Donor> findUserByBloodType(BloodType bloodType);
+	
+	List<Donor> findByIsAvailable (boolean isAvailable);
+	
 }
