@@ -75,6 +75,7 @@
         <th>City</th>
         <th>Blood Type</th>
         <th>Is available</th>
+        <th>Send Request</th>
     </tr>
     <ng-container *ngFor="let donor of donors">
         <tr>
@@ -90,8 +91,8 @@
 
                 <span [hidden]="donor['available']" class="badge bg-danger"
                     >Unavailable</span
-                >
-            </td>
+                ></td>
+            <td><button class="btn btn-info" (click)="SendRequest(donor.username)"> {{donor.username}}</button> <td>
         </tr>
     </ng-container>
 </table>
