@@ -25,6 +25,8 @@ export class Donor {
     public postalCode: string;
     public address: string;
     public isAvailable: boolean;
+    public lat: number;
+    public lng: number;
 
     constructor(
         // userID: string,
@@ -35,7 +37,9 @@ export class Donor {
         postalCode: string,
         address: string,
         bloodType: BloodType,
-        isAvailable: boolean
+        isAvailable: boolean,
+        lat: number,
+        lng: number,
     ) {
         //   this.userID = userID;
         this.name = name;
@@ -46,5 +50,7 @@ export class Donor {
         this.address = address;
         this.bloodType = bloodType;
         this.isAvailable = isAvailable;
+        this.lat = lat;
+        this.lng = lng;
     }
 }

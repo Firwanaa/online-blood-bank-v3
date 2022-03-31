@@ -21,24 +21,27 @@ import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 public class HomeController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);//or getClass();
+	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);// or getClass();
+
 	@GetMapping(value = { "/", "" })
 	public List<Donor> findAllUsers() {
 		return userServiceImpl.findAll();
 	}
 
-	@PostMapping(value ={"/register"})
+	@PostMapping(value = { "/register" })
 	public Donor register(@RequestBody Donor donor) {
 		LOGGER.info("User Register Fucntion invoced");
-		LOGGER.info("User name: "+donor.getName());
+		LOGGER.info("User name: " + donor.getName());
 		LOGGER.info("User username: " + donor.getUsername());
 		LOGGER.info("User email: " + donor.getEmail());
 		LOGGER.info("User city: " + donor.getCity());
 		LOGGER.info("User postalcode: " + donor.getPostalCode());
 		LOGGER.info("User isAvailable: " + donor.isAvailable());
-		LOGGER.info("User BloodType: "+donor.getBloodType());
-		
-		return userServiceImpl.register(donor.getName(),donor.getUsername(),donor.getEmail(),donor.getCity(), donor.getPostalCode(), donor.getAddress(), donor.getBloodType(), donor.isAvailable());
+		LOGGER.info("User BloodType: " + donor.getBloodType());
+
+		return userServiceImpl.register(donor.getName(), donor.getUsername(), donor.getEmail(), donor.getCity(),
+				donor.getPostalCode(), donor.getAddress(), donor.getBloodType(), donor.isAvailable(),
+				donor.getLat(), donor.getLng());
 	}
 
 	@PostMapping(value = { "/", "" })
@@ -78,12 +81,12 @@ public class HomeController {
 		List<Donor> userList = userServiceImpl.findUserByBloodType(BloodType.valueOf(bloodtype));
 		return userList;
 	}
-	
+
 	@GetMapping("/findByAvailability/{isAvailable}")
-	public List<Donor> findByIsAvailable(@PathVariable("isAvailable" )boolean isAvailable) {
-		 List<Donor> userList = userServiceImpl.findByIsAvailable(isAvailable);
-		 return userList;
-		
+	public List<Donor> findByIsAvailable(@PathVariable("isAvailable") boolean isAvailable) {
+		List<Donor> userList = userServiceImpl.findByIsAvailable(isAvailable);
+		return userList;
+
 	}
 
 }

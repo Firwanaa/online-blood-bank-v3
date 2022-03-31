@@ -33,6 +33,9 @@ export class DonorAddComponent implements OnInit {
     address: string;
     bloodType: BloodType;
     isAvailable: boolean;
+    lat: number;
+    lng: number;
+
     constructor(
         private donorService: DonorService,
         private notificationService: NotificationService
@@ -48,7 +51,9 @@ export class DonorAddComponent implements OnInit {
             this.postalCode,
             this.address,
             this.bloodType,
-            this.isAvailable
+            this.isAvailable,
+            this.lat,
+            this.lng
         );
         console.log(this.name);
         console.log(this.username);
@@ -58,6 +63,8 @@ export class DonorAddComponent implements OnInit {
         console.log(this.address);
         console.log(this.bloodType);
         console.log(this.isAvailable);
+        console.log(this.lat);
+        console.log(this.lng);
         if (
             this.name == '' ||
             this.username == '' ||
@@ -78,6 +85,8 @@ export class DonorAddComponent implements OnInit {
                 console.log(this.address);
                 console.log(this.bloodType);
                 console.log(this.isAvailable);
+                console.log(this.lat);
+                console.log(this.lng);
                 this.donorService.onDonorAdded.emit(newDonor);
                 //empty these variables after adding
                 this.name = '';
@@ -88,6 +97,8 @@ export class DonorAddComponent implements OnInit {
                 this.address = '';
                 this.bloodType = null;
                 this.isAvailable = false;
+                this.lat = null;
+                this.lng = null;
             });
             this.notificationService.notify(
                 'success',
@@ -123,15 +134,20 @@ export class DonorAddComponent implements OnInit {
             ) {
                 if (address.address_components[i].types[j] == 'locality') {
                     this.city = address.address_components[i].long_name;
-                    console.log("****** City",this.city);
+                    console.log('****** City', this.city);
                 }
             }
         }
-
-        console.log("Lattitued: ",address[0].geometry.location.latitude);
+        this.lat = address.geometry.location.lat();
+        this.lng = address.geometry.location.lng();
+        console.log('Lattitued: ', address.geometry.location.lat());
+        console.log('Lattitued: ', address.geometry.location.lng());
+        // console.log('Lattitued: ',  address[0].geometry.location.lat());
+        console.log(address.geometry.location.lng);
         console.log(address.formatted_address);
         console.log(address.address_components.length);
         console.log(address.address_components);
+
         // console.log(address.address_components[0]);
         // console.log(address.address_components[1]);
         // console.log(address.address_components[2]);

@@ -7,7 +7,7 @@ import ca.sheridancollege.codeavengers.domain.Donor;
 
 public interface UserService {
 
-	Donor register(String name, String username, String email, String city, String postalcode, String address, BloodType bloodType, Boolean isAvailable);
+	Donor register(String name, String username, String email, String city, String postalcode, String address, BloodType bloodType, Boolean isAvailable, Double lat, Double lng);
 	Donor save(Donor user);
 	List<Donor> findAll();
 	Donor findUserByEmail(String email);

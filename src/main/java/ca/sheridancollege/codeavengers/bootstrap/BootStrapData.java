@@ -38,6 +38,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(true)
 				.postalCode("L3Z 4R2")
+				.lat(43.5800932)
+				.lng(-79.62516389999999)
 				.bloodType(BloodType.ABNeg)
 				.build();
 
@@ -48,6 +50,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(true)
 				.postalCode("L3A 4R2")
+				.lat(43.7035)
+				.lng(-79.4409507)
 				.bloodType(BloodType.ANeg)
 				.build();
 		Donor u3 = Donor.builder()
@@ -57,6 +61,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(false)
 				.postalCode("L5B 4T2")
+				.lat(43.6526235)
+				.lng(-79.38815819)
 				.bloodType(BloodType.BPos)
 				.build();
 		Donor u4 = Donor.builder()
@@ -66,6 +72,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(false)
 				.postalCode("L3Z 4R2")
+				.lat(43.666096399)
+				.lng(-79.3873217)
 				.bloodType(BloodType.ONeg)
 				.build();
 		Donor u5 = Donor.builder()
@@ -75,6 +83,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(true)
 				.postalCode("L4U 4R2")
+				.lat(43.24473479999999)
+				.lng(-79.8680303)
 				.bloodType(BloodType.ANeg)
 				.build();
 		Donor u6 = Donor.builder()
@@ -84,6 +94,8 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(false)
 				.city("Mississauga")
 				.postalCode("L3S 3R2")
+				.lat(43.71998430000001)
+				.lng(-79.6233981)
 				.bloodType(BloodType.OPos)
 				.build();
 
@@ -94,6 +106,8 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(true)
 				.city("Toronto")
 				.postalCode("L7S 3T2")
+				.lat(43.6571692)
+				.lng(-79.7363508)
 				.bloodType(BloodType.APos)
 				.build();
 		Donor u8 = Donor.builder()
@@ -103,6 +117,8 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(true)
 				.city("Toronto")
 				.postalCode("L9S 2T2")
+				.lat(43.7400216)
+				.lng(-79.6419648)
 				.bloodType(BloodType.ABPos)
 				.build();
 
@@ -113,6 +129,8 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(false)
 				.city("Toronto")
 				.postalCode("L9E 2T5")
+				.lat(43.7035)
+				.lng(-79.4409507)
 				.bloodType(BloodType.OPos)
 				.build();
 
@@ -123,6 +141,8 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(true)
 				.city("Brampton")
 				.postalCode("L9C 1T5")
+				.lat(43.6072671)
+				.lng(-79.6498046)
 				.bloodType(BloodType.ONeg)
 				.build();
 
@@ -133,6 +153,8 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(true)
 				.city("Brampton")
 				.postalCode("L2C 1V5")
+				.lat(43.4649338)
+				.lng(-79.686222)
 				.bloodType(BloodType.BNeg)
 				.build();
 
@@ -143,6 +165,8 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(false)
 				.city("Brampton")
 				.postalCode("L9C 1T5")
+				.lat(443.6454514)
+				.lng(-79.3825315)
 				.bloodType(BloodType.APos)
 				.build();
 

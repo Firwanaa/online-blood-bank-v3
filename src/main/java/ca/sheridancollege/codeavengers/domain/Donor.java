@@ -36,6 +36,8 @@ public class Donor {
 	private BloodType bloodType;
 	private String postalCode;
 	private boolean isAvailable;
+	private Double lat;
+	private  Double lng;
 	// password needs validation with security
 	// Properties will be userd later
 	// private String password;
