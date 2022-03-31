@@ -14,8 +14,8 @@ export class DonorListComponent implements OnInit {
     bloodType: BloodType;
     isAvailable: boolean;
     email:String;
-    userId:String;
- 
+    userId:number;
+
     public bloodTypes = Object.values(BloodType);
     city: String = '';
 
@@ -31,6 +31,7 @@ export class DonorListComponent implements OnInit {
                 console.log(donors);
                 donors.forEach((d) => {
                     console.log(d['available']);
+                    console.log(d['userID']);
                 });
                     this.initMap(donors);
             },
@@ -109,11 +110,11 @@ export class DonorListComponent implements OnInit {
             title: 'Hello World!',
         });
     }
-    
+
     SendRequest(email: String){
 	  this.donorService.SendRequest(email).subscribe(
-		
-		
+
+
 	);
  }
 }

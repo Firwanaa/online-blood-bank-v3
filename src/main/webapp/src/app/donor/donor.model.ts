@@ -1,6 +1,6 @@
 // private Long id;
 
-import { BloodType } from "../enumerations/bloodType.enum";
+import { BloodType } from '../enumerations/bloodType.enum';
 
 // // Generated ID to be displayed
 // private String userId;
@@ -15,8 +15,8 @@ import { BloodType } from "../enumerations/bloodType.enum";
 // private String postalCode;
 // private boolean isAvailable;
 export class Donor {
-    // public id: number;
-    public userID: string;
+    public id: number;
+    public userId: number;
     public name: string;
     public username: string;
     public email: string;
@@ -29,7 +29,7 @@ export class Donor {
     public lng: number;
 
     constructor(
-        // userID: string,
+        // userID: number,
         name: string,
         username: string,
         email: string,
@@ -39,9 +39,9 @@ export class Donor {
         bloodType: BloodType,
         isAvailable: boolean,
         lat: number,
-        lng: number,
+        lng: number
     ) {
-        //   this.userID = userID;
+        this.userId;
         this.name = name;
         this.username = username;
         this.email = email;
