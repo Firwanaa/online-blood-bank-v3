@@ -39,8 +39,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(true)
 				.postalCode("L3Z 4R2")
-				.lat(43.5800932)
-				.lng(-79.62516389999999)
+				.lat(43.5700932)
+				.lng(-79.62716389)
 				.bloodType(BloodType.ABNeg)
 				.build();
 
@@ -49,7 +49,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Doe123")
 				.userId(generateUserId())
 				.email("Doe123@email.ca")
-				.city("Mississauga")
+				.city("Toronto")
 				.isAvailable(true)
 				.postalCode("L3A 4R2")
 				.lat(43.7035)
@@ -61,7 +61,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Jack123")
 				.userId(generateUserId())
 				.email("jack123@email.ca")
-				.city("Mississauga")
+				.city("Toronoto")
 				.isAvailable(false)
 				.postalCode("L5B 4T2")
 				.lat(43.6526235)
@@ -73,7 +73,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Sally123")
 				.userId(generateUserId())
 				.email("sally123@email.ca")
-				.city("Mississauga")
+				.city("Toronto")
 				.isAvailable(false)
 				.postalCode("L3Z 4R2")
 				.lat(43.666096399)
@@ -85,7 +85,7 @@ public class BootStrapData implements CommandLineRunner {
 				.username("Sam123")
 				.userId(generateUserId())
 				.email("sam123@email.ca")
-				.city("Mississauga")
+				.city("Hamilton")
 				.isAvailable(true)
 				.postalCode("L4U 4R2")
 				.lat(43.24473479999999)
@@ -138,7 +138,7 @@ public class BootStrapData implements CommandLineRunner {
 				.isAvailable(false)
 				.city("Toronto")
 				.postalCode("L9E 2T5")
-				.lat(43.7035)
+				.lat(43.8035)
 				.lng(-79.4409507)
 				.bloodType(BloodType.OPos)
 				.build();
@@ -149,7 +149,7 @@ public class BootStrapData implements CommandLineRunner {
 				.userId(generateUserId())
 				.email("Romeo123@email.ca")
 				.isAvailable(true)
-				.city("Brampton")
+				.city("Mississauga")
 				.postalCode("L9C 1T5")
 				.lat(43.6072671)
 				.lng(-79.6498046)
@@ -162,7 +162,7 @@ public class BootStrapData implements CommandLineRunner {
 				.userId(generateUserId())
 				.email("Lexa123@email.ca")
 				.isAvailable(true)
-				.city("Brampton")
+				.city("Oakville")
 				.postalCode("L2C 1V5")
 				.lat(43.4649338)
 				.lng(-79.686222)
@@ -176,10 +176,72 @@ public class BootStrapData implements CommandLineRunner {
 				.email("Jolia123@email.ca")
 				.isAvailable(false)
 				.city("Brampton")
-				.postalCode("L9C 1T5")
+				.postalCode("L9I 1T5")
 				.lat(443.6454514)
 				.lng(-79.3825315)
 				.bloodType(BloodType.APos)
+				.build();
+		Donor u13 = Donor.builder()
+				.name("Akash")
+				.username("Akash123")
+				.userId(generateUserId())
+				.email("akash@email.ca")
+				.isAvailable(true)
+				.city("Guelph")
+				.postalCode("L9M 1T5")
+				.lat(43.5348)
+				.lng(-80.2482)
+				.bloodType(BloodType.ANeg)
+				.build();
+
+		Donor u14 = Donor.builder()
+				.name("Vlad")
+				.username("Vlad")
+				.userId(generateUserId())
+				.email("vlad@email.ca")
+				.isAvailable(true)
+				.city("Guelph")
+				.postalCode("L9J 1T5")
+				.lat(43.5538)
+				.lng(-80.2471)
+				.bloodType(BloodType.ABNeg)
+				.build();
+		Donor u15 = Donor.builder()
+				.name("Borak")
+				.username("Borak13")
+				.userId(generateUserId())
+				.email("Borak@email.ca")
+				.isAvailable(false)
+				.city("Guelph")
+				.postalCode("L8C 1T5")
+				.lat(43.5138)
+				.lng(-80.2271)
+				.bloodType(BloodType.OPos)
+				.build();
+		Donor u16 = Donor.builder()
+				.name("Simon")
+				.username("Simon123")
+				.userId(generateUserId())
+				.email("simon@email.ca")
+				.isAvailable(true)
+				.city("Kitchener")
+				.postalCode("L5C 1T5")
+				.lat(43.4516)
+				.lng(-80.4925)
+				.bloodType(BloodType.ABPos)
+				.build();
+
+		Donor u17 = Donor.builder()
+				.name("Mike")
+				.username("Mike34")
+				.userId(generateUserId())
+				.email("mike@email.ca")
+				.isAvailable(true)
+				.city("Kitchener")
+				.postalCode("L9C 1T5")
+				.lat(43.4517)
+				.lng(-80.5924)
+				.bloodType(BloodType.BPos)
 				.build();
 
 		userRepository.save(u1);
@@ -194,6 +256,11 @@ public class BootStrapData implements CommandLineRunner {
 		userRepository.save(u10);
 		userRepository.save(u11);
 		userRepository.save(u12);
+		userRepository.save(u13);
+		userRepository.save(u14);
+		userRepository.save(u15);
+		userRepository.save(u16);
+		userRepository.save(u17);
 		institutionRepository.save(inst1);
 
 	}

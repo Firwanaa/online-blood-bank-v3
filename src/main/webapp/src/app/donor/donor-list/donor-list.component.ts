@@ -13,8 +13,9 @@ export class DonorListComponent implements OnInit {
     username: String;
     bloodType: BloodType;
     isAvailable: boolean;
-    email:String;
-    userId:number;
+    email: String;
+    userId: number;
+    arrLength: number;
 
     public bloodTypes = Object.values(BloodType);
     city: String = '';
@@ -33,7 +34,11 @@ export class DonorListComponent implements OnInit {
                     console.log(d['available']);
                     console.log(d['userID']);
                 });
-                    this.initMap(donors);
+                this.notificationService.notify(
+                    'success',
+                    donors.length + ' donors loaded successfully'
+                );
+                this.initMap(donors);
             },
             (error) => console.log(error)
         );
@@ -42,7 +47,7 @@ export class DonorListComponent implements OnInit {
         this.donorService.findByCity(this.city.toString()).subscribe(
             (donors: any[]) => {
                 this.donors = donors;
-                    this.initMap(donors);
+                this.initMap(donors);
             },
             (error) => console.log(error)
         );
@@ -56,8 +61,13 @@ export class DonorListComponent implements OnInit {
                     console.log(d['available']);
                     console.log(d['lat']);
                 });
-                    this.initMap(donors);
+                this.notificationService.notify(
+                    'success',
+                    donors.length + ' donors loaded successfully'
+                );
+                this.initMap(donors);
             },
+
             (error) => console.log(error)
         );
     }
@@ -65,8 +75,13 @@ export class DonorListComponent implements OnInit {
         this.donorService.findByDonorBloodtype(bloodType).subscribe(
             (donors: any[]) => {
                 this.donors = donors;
-                    this.initMap(donors);
+                this.initMap(donors);
+                this.notificationService.notify(
+                    'success',
+                    donors.length + ' donors loaded successfully'
+                );
             },
+
             (error) => console.log(error)
         );
     }
@@ -75,7 +90,11 @@ export class DonorListComponent implements OnInit {
         this.donorService.findByIsAvailable(isAvailable).subscribe(
             (donors: any[]) => {
                 this.donors = donors;
-                    this.initMap(donors);
+                this.initMap(donors);
+                this.notificationService.notify(
+                    'success',
+                    donors.length + ' donors loaded successfully'
+                );
             },
             (error) => console.log(error)
         );
@@ -86,9 +105,18 @@ export class DonorListComponent implements OnInit {
         this.notificationService.notify('error', 'Emergency Declared');
     }
 
+    hospital_icon = {
+        url: '../../../assets/hospital.png', // url
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+    };
+
+    person_icon = {
+        url: '../../../assets/person.png', // url
+        scaledSize: new google.maps.Size(50, 50), // scaled size
+    };
     initMap(donors: Donor[]): void {
         const myLatLng = { lat: 43.6532, lng: -79.3832 };
-        const myLatLng2 = { lat: 43.5800932, lng: -79.62516389999999 };
+        const institute = { lat: 43.65602, lng: -79.7387 };
         const map = new google.maps.Map(
             document.getElementById('map') as HTMLElement,
             {
@@ -101,20 +129,21 @@ export class DonorListComponent implements OnInit {
             new google.maps.Marker({
                 position: { lat: d['lat'], lng: d['lng'] },
                 map,
-                title: "Blood Type: "+d['bloodType'],
+                label: d['bloodType'],
+                title: 'Username: ' + d['username'],
+                icon: this.person_icon,
             });
         });
         new google.maps.Marker({
-            position: myLatLng2,
+            position: institute,
             map,
-            title: 'Hello World!',
+            title: 'institution#1!',
+            icon: this.hospital_icon,
         });
     }
 
-    SendRequest(email: String){
-	  this.donorService.SendRequest(email).subscribe(
-
-
-	);
- }
+    SendRequest(email: String) {
+        this.donorService.SendRequest(email).subscribe();
+        this.notificationService.notify('success', ' Email sent successfully!');
+    }
 }

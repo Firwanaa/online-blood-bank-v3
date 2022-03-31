@@ -32,7 +32,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
             // Custom options in here
             position: {
                 horizontal: { position: 'right' },
-                vertical: { position: 'top', distance: 56 },
+                vertical: { position: 'top', distance: 76 },
             },
         }),
     ],
