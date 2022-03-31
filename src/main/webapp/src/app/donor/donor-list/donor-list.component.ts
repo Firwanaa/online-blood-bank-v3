@@ -44,8 +44,11 @@ export class DonorListComponent implements OnInit {
 		this.donorService.findByCity(this.city.toString()).subscribe(
 			(donors: any[]) => {
 				this.donors = donors
+				this.city='';
 			},
 			(error) => console.log(error)
+			
+			
 
 		);
 	}
@@ -53,6 +56,7 @@ export class DonorListComponent implements OnInit {
 		this.donorService.findByDonorBloodtype(bloodType).subscribe(
 			(donors: any[]) => {
 				this.donors = donors
+				
 			},
 			(error) => console.log(error)
 		);
@@ -71,6 +75,26 @@ export class DonorListComponent implements OnInit {
 	 this.donorService.sendEmergencyRequest();
 	 this.notificationService.notify('error', 'Emergency Declared');
  }
+ 
+  ResetFilter():void{
+	
+			this.donorService.getDonors().subscribe(
+			(donors: any[]) => {
+				this.donors = donors
+                console.log(donors)
+                donors.forEach((d) => {
+                    console.log(d['available'])
+                });
+
+
+
+			},
+			(error) => console.log(error)
+		);
+	
+ }
+
+ 
 }
 
 
