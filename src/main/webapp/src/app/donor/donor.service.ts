@@ -33,6 +33,10 @@ export class DonorService {
     findByCity(city: String) {
         return this.http.get<Donor[]>(`/api/donor/findbycity/${city}`);
     }
+    
+    SendRequest(username:String){
+	 return this.http.get<Donor[]>(`/api/donor/sendrequest/${username}`);
+}
 
     onDonorAdded = new EventEmitter<Donor>();
 }

@@ -13,6 +13,9 @@ export class DonorListComponent implements OnInit {
     username: String;
     bloodType: BloodType;
     isAvailable: boolean;
+    email:String;
+    userId:String;
+ 
     public bloodTypes = Object.values(BloodType);
     city: String = '';
 
@@ -106,4 +109,11 @@ export class DonorListComponent implements OnInit {
             title: 'Hello World!',
         });
     }
+    
+    SendRequest(email: String){
+	  this.donorService.SendRequest(email).subscribe(
+		
+		
+	);
+ }
 }
