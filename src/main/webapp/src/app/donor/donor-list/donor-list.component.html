@@ -1,3 +1,4 @@
+<div id="map"></div>
 <div class="inlineDiv">
     <div class="form-row">
         <input placeholder="Search by City" [(ngModel)]="city" />
@@ -38,16 +39,15 @@
     </div>
 </div>
 
-
-  <div>
-       <select [(ngModel)]="isAvailable">
-            <option [value]="true">Available</option>
-             <option [value]="false">Not Available</option>
-       </select>
-       <button class="btn btn-primary" (click)="SearchAvailability(isAvailable)">
-            Search Availability
-        </button>
-    </div>
+<div>
+    <select [(ngModel)]="isAvailable">
+        <option [value]="true">Available</option>
+        <option [value]="false">Not Available</option>
+    </select>
+    <button class="btn btn-primary" (click)="SearchAvailability(isAvailable)">
+        Search Availability
+    </button>
+</div>
 
 <table style="width: -webkit-fill-available">
     <tr>
@@ -66,9 +66,13 @@
             <td>{{ donor.city }}</td>
             <td>{{ donor.bloodType }}</td>
             <td>
-                <span [hidden]="!donor['available']" class="badge bg-success">Available</span>
+                <span [hidden]="!donor['available']" class="badge bg-success"
+                    >Available</span
+                >
 
-                <span [hidden]="donor['available']" class="badge bg-danger">Unavailable</span>
+                <span [hidden]="donor['available']" class="badge bg-danger"
+                    >Unavailable</span
+                >
             </td>
         </tr>
     </ng-container>

@@ -11,6 +11,7 @@ import { DonorListComponent } from './donor/donor-list/donor-list.component';
 import { DonorComponent } from './donor/donor.component';
 import { DonorService } from './donor/donor.service';
 import { HeaderComponent } from './header/header.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { HeaderComponent } from './header/header.component';
     ],
     imports: [
         GooglePlaceModule,
+        GoogleMapsModule,
         BrowserModule,
         AppRoutingModule,
         FormsModule,
