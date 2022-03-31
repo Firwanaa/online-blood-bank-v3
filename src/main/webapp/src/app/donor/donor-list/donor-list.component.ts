@@ -29,6 +29,7 @@ export class DonorListComponent implements OnInit {
                 donors.forEach((d) => {
                     console.log(d['available']);
                 });
+
             },
             (error) => console.log(error)
         );
@@ -81,6 +82,71 @@ export class DonorListComponent implements OnInit {
     map,
     title: "Hello World!",
   });
+=======
+
+
+
+			},
+			(error) => console.log(error)
+		);
+
+	}
+	SearchCity(city: String) {
+		this.donorService.findByCity(this.city.toString()).subscribe(
+			(donors: any[]) => {
+				this.donors = donors
+				this.city='';
+			},
+			(error) => console.log(error)
+			
+			
+
+		);
+	}
+	SearchBloodType(bloodType: BloodType) {
+		this.donorService.findByDonorBloodtype(bloodType).subscribe(
+			(donors: any[]) => {
+				this.donors = donors
+				
+			},
+			(error) => console.log(error)
+		);
+	}
+	
+	SearchAvailability(isAvailable: boolean){
+		this.donorService.findByIsAvailable(isAvailable).subscribe(
+			(donors: any[]) => {
+				this.donors = donors
+			},
+			(error) => console.log(error)
+		);
+	}
+
+	EmergencyRequest():void{
+	 this.donorService.sendEmergencyRequest();
+	 this.notificationService.notify('error', 'Emergency Declared');
+ }
+ 
+  ResetFilter():void{
+	
+			this.donorService.getDonors().subscribe(
+			(donors: any[]) => {
+				this.donors = donors
+                console.log(donors)
+                donors.forEach((d) => {
+                    console.log(d['available'])
+                });
+
+
+
+			},
+			(error) => console.log(error)
+		);
+	
+ }
+
+ 
+
 }
 
 }

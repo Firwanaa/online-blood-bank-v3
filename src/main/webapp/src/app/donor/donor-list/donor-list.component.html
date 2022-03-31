@@ -1,5 +1,8 @@
 <div id="map"></div>
 <div class="inlineDiv">
+   
+
+   
     <div class="form-row">
         <input placeholder="Search by City" [(ngModel)]="city" />
 
@@ -11,7 +14,7 @@
             Submit
         </button>
     </div>
-    <div>
+    <div class="form-row">
         <select
             class="custom-select"
             name="bloodType"
@@ -32,22 +35,37 @@
             Submit
         </button>
     </div>
+
     <div>
+
+      <div class="form-row">
+       <select [(ngModel)]="isAvailable">
+            <option [value]="true">Available</option>
+             <option [value]="false">Not Available</option>
+       </select>
+       <button class="btn btn-primary" (click)="SearchAvailability(isAvailable)">
+            Search Availability
+        </button>
+    </div>
+</div>
+    <div class="inlineDiv">
+    <div>
+        <button type="reset" class="btn btn-info" (click)="ResetFilter()">
+           Reset Table
+        </button>
+     </div>
+        <div class="form-row">
+
         <button class="btn btn-danger" (click)="EmergencyRequest()">
             SendEmergency Request To All
         </button>
     </div>
+
 </div>
 
-<div>
-    <select [(ngModel)]="isAvailable">
-        <option [value]="true">Available</option>
-        <option [value]="false">Not Available</option>
-    </select>
-    <button class="btn btn-primary" (click)="SearchAvailability(isAvailable)">
-        Search Availability
-    </button>
-</div>
+
+
+    </div>
 
 <table style="width: -webkit-fill-available">
     <tr>
