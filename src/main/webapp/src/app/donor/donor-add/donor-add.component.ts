@@ -128,7 +128,7 @@ export class DonorAddComponent implements OnInit {
             }
         }
 
-        console.log(address.geometry);
+        console.log("Lattitued: ",address[0].geometry.location.latitude);
         console.log(address.formatted_address);
         console.log(address.address_components.length);
         console.log(address.address_components);

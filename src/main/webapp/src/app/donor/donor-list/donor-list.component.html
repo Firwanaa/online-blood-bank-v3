@@ -1,3 +1,4 @@
+<div id="map"></div>
 <div class="inlineDiv">
    
 
@@ -34,6 +35,9 @@
             Submit
         </button>
     </div>
+
+    <div>
+
       <div class="form-row">
        <select [(ngModel)]="isAvailable">
             <option [value]="true">Available</option>
@@ -51,11 +55,18 @@
         </button>
      </div>
         <div class="form-row">
+
         <button class="btn btn-danger" (click)="EmergencyRequest()">
             SendEmergency Request To All
         </button>
     </div>
+
+</div>
+
+
+
     </div>
+
 <table style="width: -webkit-fill-available">
     <tr>
         <th>Name</th>
@@ -73,9 +84,13 @@
             <td>{{ donor.city }}</td>
             <td>{{ donor.bloodType }}</td>
             <td>
-                <span [hidden]="!donor['available']" class="badge bg-success">Available</span>
+                <span [hidden]="!donor['available']" class="badge bg-success"
+                    >Available</span
+                >
 
-                <span [hidden]="donor['available']" class="badge bg-danger">Unavailable</span>
+                <span [hidden]="donor['available']" class="badge bg-danger"
+                    >Unavailable</span
+                >
             </td>
         </tr>
     </ng-container>
