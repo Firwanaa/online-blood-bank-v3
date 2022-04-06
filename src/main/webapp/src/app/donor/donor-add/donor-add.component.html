@@ -1,4 +1,12 @@
-<div class="form-row">
+
+
+
+
+<img class="image-divider"
+       src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/101448/wedding-divider-png-9.png" />
+       <br>
+<div class=" divi ">
+<h3>Lets register for a noble cause</h3>
     <div class="form-group col-md-6">
         <label for="name">Name</label>
         <input
@@ -10,6 +18,8 @@
             placeholder="Name"
         />
     </div>
+    
+    
     <div class="form-group col-md-6">
         <label for="username">Username</label>
         <input
@@ -32,7 +42,7 @@
             [(ngModel)]="email"
         />
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
         <label for="inputAddress">Address</label>
         <input
             autocomplete="off"
@@ -55,7 +65,7 @@
         (onAddressChange)="handleAddressChange($event)"
     /> -->
 
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-6">
         <label for="inputZip">Postal Code</label>
         <input
             type="text"
@@ -78,10 +88,12 @@
             />
         </div>
     </div>
-    <div>
+    <div id="type">
+    <label >Blood Type</label><br>
         <select
-            class="custom-select"
+            class="custom-select col-md-6"
             name="bloodType"
+            
             required
             (keyup.enter)="onDonorAdd($event)"
             [(ngModel)]="bloodType"
@@ -107,6 +119,7 @@
         </div>
     </div>
     <button type="submit" (click)="onDonorAdd($event)" class="btn btn-primary">
-        Submit
+        Submit the form
     </button>
 </div>
+

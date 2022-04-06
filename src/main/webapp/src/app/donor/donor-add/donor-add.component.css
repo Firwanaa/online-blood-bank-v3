@@ -1,0 +1,25 @@
+.divi{
+	position: relative;
+	left:30%;
+}
+
+select{
+	height:35px
+}
+
+button{
+	position: relative;
+	left:15%;
+	background-color: #AA336A;
+}
+.image-divider {
+  margin: 20px 0;
+   width: 100%;;
+   
+}
+
+h3{
+	color:  #AA336A;;
+	position: relative;
+	left: 7%;
+}

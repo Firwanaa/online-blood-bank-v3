@@ -4,11 +4,38 @@
 #map {
   height: 400px;
   width: 100%;
+  border:2px soild blue
 }
 
 button{
 	margin-right:15px;
 	margin-bottom:5px;
+	background-color: #AA336A;
+	color:white;
+}
+
+.image-divider {
+  margin: 20px 0;
+   width: 100%;;
+   
+}
+
+#sec1{
+	position:relative;
+	left:18%
+}
+
+
+
+input{height:35px}
+select{height:35px}
+#sec2{
+	position:relative;
+	left:38%;
+}
+#sec3{
+	position:relative;
+	left:25%;
 }
 
 
