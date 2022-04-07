@@ -106,12 +106,12 @@ export class DonorListComponent implements OnInit {
     }
 
     hospital_icon = {
-        url: '../../../assets/hospital.png', // url
+        url: 'src/assets/hospital.png', // url
         scaledSize: new google.maps.Size(50, 50), // scaled size
     };
 
     person_icon = {
-        url: '../../../assets/person.png', // url
+        url: 'src/assets/person.png', // url
         scaledSize: new google.maps.Size(50, 50), // scaled size
     };
     initMap(donors: Donor[]): void {

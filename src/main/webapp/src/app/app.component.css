@@ -1,17 +1,17 @@
 #main{
-	
+
 	width: 100%;
         height: 700px;
-	background-image: url(../assets/bg1.jpg);
+	background-image: url(src/assets/bg1.jpg);
 
 	background-size: cover;
 
- 
+
 }
 .image-divider {
   margin: 20px 0;
    width: 100%;;
-   
+
 }
 /* #pic{
 	position:relative;
@@ -80,7 +80,7 @@ h1{
 .footer-links li
 {
   display:block;
-  
+
 }
 .footer-links a
 {
