@@ -11,15 +11,19 @@ export class DonorService {
     getDonors() {
         return this.http.get<Donor[]>('/api/donor/');
     }
-    
-    sendEmergencyRequest(){
-	return this.http.get('/api/donor/emergencyrequest');
+
+    sendEmergencyRequest() {
+        console.log('Emergency Service');
+        return this.http.get(`/api/donor/emergencyrequest`);
+        // return this.http.get('/api/donor/testapi');
     }
-    
-    findByIsAvailable(isAvailable: boolean){
-	     return this.http.get<Donor[]>(`/api/donor/findByAvailability/${isAvailable}`);
-    } 
-    
+
+    findByIsAvailable(isAvailable: boolean) {
+        return this.http.get<Donor[]>(
+            `/api/donor/findByAvailability/${isAvailable}`
+        );
+    }
+
     addDonor(donor: Donor) {
         return this.http.post('/api/donor/register', donor);
     }
@@ -33,10 +37,10 @@ export class DonorService {
     findByCity(city: String) {
         return this.http.get<Donor[]>(`/api/donor/findbycity/${city}`);
     }
-    
-    SendRequest(username:String){
-	 return this.http.get<Donor[]>(`/api/donor/sendrequest/${username}`);
-}
+
+    SendRequest(username: String) {
+        return this.http.get<Donor[]>(`/api/donor/sendrequest/${username}`);
+    }
 
     onDonorAdded = new EventEmitter<Donor>();
 }

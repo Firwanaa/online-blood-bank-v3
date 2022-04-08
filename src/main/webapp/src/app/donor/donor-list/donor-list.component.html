@@ -1,31 +1,28 @@
-<img class="image-divider"
-       src="src/assets/divider.png" />
-       <br>
+<img class="image-divider" src="src/assets/divider.png" />
+<br />
 <div id="mapWrapper">
-
-       <div id="map"></div>
+    <div id="map"></div>
 </div>
 
-<br><br>
-<img class="image-divider"
-       src="src/assets/divider.png" />
-       <br>
-       <br>
+<br /><br />
+<img class="image-divider" src="src/assets/divider.png" />
+<br />
+<br />
 <div id="sec1" class="inlineDiv">
-
-
-	<!--  <div id="city" class="inlineDiv"> -->
+    <!--  <div id="city" class="inlineDiv"> -->
 
     <div class="form-row">
         <input placeholder="Search by City" [(ngModel)]="city" />&nbsp;
-        <button type="submit" (click)="SearchCity(city)" class="btn btn-primary">  Submit </button>
+        <button
+            type="submit"
+            (click)="SearchCity(city)"
+            class="btn btn-primary"
+        >
+            Submit
+        </button>
     </div>
 
-
-
-
-
-    <div id= "type" class="form-row">
+    <div id="type" class="form-row">
         <select
             class="custom-select"
             name="bloodType"
@@ -36,8 +33,8 @@
             <!--<option selected></option>-->
             <option [value]="bloodType" *ngFor="let bloodType of bloodTypes">
                 {{ bloodType }}
-            </option>
-        </select>&nbsp;
+            </option></select
+        >&nbsp;
         <button
             type="submit"
             (click)="SearchBloodType(bloodType)"
@@ -45,18 +42,14 @@
         >
             Submit
         </button>
-
     </div>
-
-
-
 
     <div>
         <div id="avail" class="form-row">
             <select [(ngModel)]="isAvailable">
                 <option [value]="true">Available</option>
-                <option [value]="false">Not Available</option>
-            </select>&nbsp;
+                <option [value]="false">Not Available</option></select
+            >&nbsp;
             <button
                 class="btn btn-primary"
                 (click)="SearchAvailability(isAvailable)"
@@ -65,82 +58,76 @@
             </button>
         </div>
     </div>
+</div>
+<br />
 
-   </div>
-    <br>
-
-
-
-    <div id="sec2" class="inlineDiv">
-        <div class="form-row">
-            <button type="reset" class="btn btn-info" (click)="ResetFilter()">
-                Reset Table
-            </button>
-        </div>
-
-        <div class="form-row">
-            <button type="submit" class="btn btn-info" >
-                Reset Filters
-            </button>
-        </div>
+<div id="sec2" class="inlineDiv">
+    <div class="form-row">
+        <button type="reset" class="btn btn-info" (click)="ResetFilter()">
+            Reset Table
+        </button>
     </div>
 
-    <br>
+    <div class="form-row">
+        <button type="submit" class="btn btn-info">Reset Filters</button>
+    </div>
+</div>
 
-    <div id="sec3" class="inlineDiv">
-        <div class="form-row">
-            <button class="btn btn-danger" (click)="EmergencyRequest()">
-                Send Emergency Request To All
-            </button>
-        </div>
+<br />
 
-        <div class="form-row">
-            <button class="btn btn-danger" >
-                Cancel Emergency Request To All
-            </button>
-        </div>
+<div id="sec3" class="inlineDiv">
+    <div class="form-row">
+        <button class="btn btn-danger" (click)="EmergencyRequest()">
+            Send Emergency Request To All
+        </button>
     </div>
 
-<img class="image-divider"
-       src="src/assets/divider.png" />
-       <br>
+    <div class="form-row">
+        <button class="btn btn-danger">Cancel Emergency Request To All</button>
+    </div>
+</div>
+
+<img class="image-divider" src="src/assets/divider.png" />
+<br />
 <div class="table-responsive">
-<table  style="width: -webkit-fill-available" >
-    <tr>
-        <th>User ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>City</th>
-        <th>Blood Type</th>
-        <th>Is available</th>
-        <th>Send Request</th>
-    </tr>
-    <ng-container *ngFor="let donor of donors">
+    <table style="width: -webkit-fill-available">
         <tr>
-            <td>{{ donor.userId }}</td>
-            <td>{{ donor.username }}</td>
-            <td>{{ donor.email }}</td>
-            <td>{{ donor.city }}</td>
-            <td>{{ donor.bloodType }}</td>
-            <td>
-                <span [hidden]="!donor['available']" class="badge bg-success"
-                    >Available</span
-                >
-
-                <span [hidden]="donor['available']" class="badge bg-danger"
-                    >Unavailable</span
-                >
-            </td>
-            <td>
-                <button
-                    class="btn btn-info"
-                    (click)="SendRequest(donor.username)"
-                >
-                    Send Request
-                </button>
-            </td>
-            <td></td>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Blood Type</th>
+            <th>Is available</th>
+            <th>Send Request</th>
         </tr>
-    </ng-container>
-</table>
+        <ng-container *ngFor="let donor of donors">
+            <tr>
+                <td>{{ donor.userId }}</td>
+                <td>{{ donor.username }}</td>
+                <td>{{ donor.email }}</td>
+                <td>{{ donor.city }}</td>
+                <td>{{ donor.bloodType }}</td>
+                <td>
+                    <span
+                        [hidden]="!donor['available']"
+                        class="badge bg-success"
+                        >Available</span
+                    >
+
+                    <span [hidden]="donor['available']" class="badge bg-danger"
+                        >Unavailable</span
+                    >
+                </td>
+                <td>
+                    <button
+                        class="btn btn-info"
+                        (click)="SendRequest(donor.username)"
+                    >
+                        Send Request
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+        </ng-container>
+    </table>
 </div>

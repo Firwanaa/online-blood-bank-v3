@@ -68,7 +68,13 @@ public class HomeController {
 
 	@GetMapping("/emergencyrequest")
 	public void sendEmergencyRequest() {
+		System.out.println("Emergency Email");
 		userServiceImpl.sendEmergencyRequest();
+	}
+
+	@GetMapping("/testapi")
+	public void testApi() {
+		System.out.println("Test Api******************");
 	}
 
 	@GetMapping("/findbypostalcode/{postalcode}")

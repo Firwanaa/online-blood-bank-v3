@@ -100,8 +100,9 @@ export class DonorListComponent implements OnInit {
         );
     }
 
-    EmergencyRequest(): void {
-        this.donorService.sendEmergencyRequest();
+    EmergencyRequest() {
+        console.log('EmergencyRequest**88');
+        this.donorService.sendEmergencyRequest().subscribe();
         this.notificationService.notify('error', 'Emergency Declared');
     }
 
