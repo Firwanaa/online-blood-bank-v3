@@ -30,7 +30,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Donor register(String name, String username, String email, String city, String postalcode,String address, BloodType bloodType,Boolean isAvailable, Double lat, Double lng ) {
+	public Donor register(String name, String username, String email, String city, String postalcode,
+			String address, BloodType bloodType, Boolean isAvailable, Double lat, Double lng) {
 		// TODO we should validate if username or email exists in DB
 		Donor user = new Donor();
 		String password = generatePassword();
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		user.setCity(city);
 		user.setPostalCode(postalcode);
 		user.setLat(lat);
-		user.setLat(lat);
+		user.setLng(lng);
 		user.setAvailable(isAvailable);
 		try {
 			emailService.sendNewPasswordEmail(name, password, email);
@@ -69,10 +70,10 @@ public class UserServiceImpl implements UserService {
 	public List<Donor> findUserByBloodType(BloodType bloodType) {
 		return userRepository.findUserByBloodType(bloodType);
 	}
-	
+
 	@Override
-	public List<Donor> findByIsAvailable (boolean isAvailable){
-		
+	public List<Donor> findByIsAvailable(boolean isAvailable) {
+
 		return userRepository.findByIsAvailable(isAvailable);
 	}
 

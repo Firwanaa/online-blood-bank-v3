@@ -41,7 +41,7 @@ export class Donor {
         lat: number,
         lng: number
     ) {
-        this.userId;
+        // this.userId;
         this.name = name;
         this.username = username;
         this.email = email;

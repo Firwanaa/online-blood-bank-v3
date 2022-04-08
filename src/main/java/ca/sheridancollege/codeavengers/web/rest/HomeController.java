@@ -38,7 +38,8 @@ public class HomeController {
 		LOGGER.info("User postalcode: " + donor.getPostalCode());
 		LOGGER.info("User isAvailable: " + donor.isAvailable());
 		LOGGER.info("User BloodType: " + donor.getBloodType());
-
+		LOGGER.info("User Lattitude: " + donor.getLat());
+		LOGGER.info("User Longitude: " + donor.getLng());
 		return userServiceImpl.register(donor.getName(), donor.getUsername(), donor.getEmail(), donor.getCity(),
 				donor.getPostalCode(), donor.getAddress(), donor.getBloodType(), donor.isAvailable(),
 				donor.getLat(), donor.getLng());
