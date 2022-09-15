@@ -7,7 +7,7 @@ public class EmailConstants {
 	public static final String PASSWORD = "N8NLh6JeqA8nz7R";
 	public static final String FROM_EMAIL = "online.blood.ca@outlook.com";
 	public static final String CC_EMAIL = "";
-	public static final String EMAIL_SUBJECT = "Online BloodBank, CA - New Password";
+	public static final String EMAIL_SUBJECT = "Online BloodBank - CA";
 	public static final String GMAIL_SMTP_SERVER = "smtp-mail.outlook.com";
 	public static final String SMTP_HOST = "mail.smtp.host";
 	public static final String SMTP_AUTH = "mail.smtp.auth";
