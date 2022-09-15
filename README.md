@@ -5,7 +5,7 @@ A Capstone project: An Idea to create an Online Banking System
 ### Some Git tips for the team 🧐
 
 * To Clone this repo: 
-`git clone https://github.com/Firwanaa/online-blood-bank.git`
+`git clone https://github.com/Firwanaa/online-blood-bank-v3.git`
 
 * To create local brach:
   `git checkout -b newBranchName`
