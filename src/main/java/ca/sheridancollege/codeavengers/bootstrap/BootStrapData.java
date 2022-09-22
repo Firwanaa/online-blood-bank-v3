@@ -21,8 +21,14 @@ public class BootStrapData implements CommandLineRunner {
 	@Autowired
 	private InstitutionRepository institutionRepository;
 
+	
+	
+	 
+
+	
 	@Override
 	public void run(String... args) throws Exception {
+		
 		Institution inst1 = Institution.builder()
 				.userId(generateUserId())
 				.name("Blood Institution #1")
