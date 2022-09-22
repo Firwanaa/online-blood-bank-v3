@@ -1,10 +1,12 @@
 spring:
- jpa:
-  show-sql: true
- h2:
-  console:
-   enabled: true
- datasource:
-  url: jdbc:h2:mem:testdb
-  username: sa
-  password:
+  data:
+      mongodb:
+        user: admin
+        password: admin
+        uri: mongodb://localhost:27017/bloodbank
+  
+  
+codeAvengers:
+  app:       
+     jwtSecret: codeAvengersSecretKey
+     jwtExpirationMs: 1000   
