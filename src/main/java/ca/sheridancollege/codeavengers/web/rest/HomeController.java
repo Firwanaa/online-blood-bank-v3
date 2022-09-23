@@ -76,10 +76,10 @@ public class HomeController {
 
 	Set<Role> convertStringSetToRoleSetWithStreams(final Set<String> rolesInString) {
 		return rolesInString.stream().map(roleInString -> {
-			final Role role = new Role();
-			role.setName(eRole.valueOf(roleInString));
-			role.setId(null);
-			roleRepository.save(role);
+			final Role role = roleRepository.findByName(eRole.valueOf(roleInString)).get();
+			//role.setName(eRole.valueOf(roleInString));
+			//role.setId(null);
+			// roleRepository.save(role);
 			return role;
 		}).collect(Collectors.toSet());
 	}
