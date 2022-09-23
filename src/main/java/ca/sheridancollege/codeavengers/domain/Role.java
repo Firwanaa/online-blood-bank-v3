@@ -33,7 +33,8 @@ public class Role {
   public void setName(eRole name) {
     this.name = name;
   }
+
   public String getNameStr(eRole name) {
-	  return this.name.toString();
-	  }
+    return this.name.toString();
+  }
 }

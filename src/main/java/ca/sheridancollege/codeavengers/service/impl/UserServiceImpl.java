@@ -19,7 +19,7 @@ import ca.sheridancollege.codeavengers.service.EmailService;
 import ca.sheridancollege.codeavengers.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService,UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -37,10 +37,11 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 
 	@Override
 	public Donor register(String name, String username, String email, String city, String postalcode,
-			String address, BloodType bloodType, Boolean isAvailable, Double lat, Double lng, Set <Role> role, String password) {
+			String address, BloodType bloodType, Boolean isAvailable, Double lat, Double lng,
+			Set<Role> role, String password) {
 		// TODO we should validate if username or email exists in DB
 		Donor user = new Donor();
-		//String password = generatePassword();
+		// String password = generatePassword();
 		String userID = generateUserId();
 		user.setName(name);
 		user.setUsername(username);
@@ -56,14 +57,16 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 		user.setIsAvailable(isAvailable);
 		user.setRoles(role);
 		user.setPassword(password);
-	
-		/*try {
-			emailService.sendNewPasswordEmail(name, password, email);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		
-		//Mongo DB - Set ID to be null, so Mongo DB can generate an ID in the database
+
+		/*
+		 * try {
+		 * emailService.sendNewPasswordEmail(name, password, email);
+		 * } catch (Exception e) {
+		 * e.printStackTrace();
+		 * }
+		 */
+
+		// Mongo DB - Set ID to be null, so Mongo DB can generate an ID in the database
 		user.setId(null);
 		return userRepository.save(user);
 	}
@@ -135,27 +138,26 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	@Override
-	public Boolean existsByUsername (String username) {
-		
+	public Boolean existsByUsername(String username) {
+
 		return userRepository.existsByUsername(username);
 	}
-	
+
 	@Override
-   public Boolean existsByEmail (String email) {
-		
+	public Boolean existsByEmail(String email) {
+
 		return userRepository.existsByEmail(email);
 	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+				.orElseThrow(() -> new UsernameNotFoundException(
+						"User Not Found with username: " + username));
 
 		return UserDetailsImpl.build(user);
 	}
-	
 
 }

@@ -2,7 +2,6 @@ package ca.sheridancollege.codeavengers.web.rest;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -49,16 +48,16 @@ import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 public class HomeController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-	
+
 	@Autowired
 	AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	UserRepository userRepository;
 
 	@Autowired
 	InstitutionRepository institutionRepository;
-	
+
 	@Autowired
 	RoleRepository roleRepository;
 
@@ -67,7 +66,7 @@ public class HomeController {
 
 	@Autowired
 	JwtUtils jwtUtils;
-	
+
 	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);// or getClass();
 
 	@GetMapping(value = { "/", "" })
@@ -76,60 +75,53 @@ public class HomeController {
 	}
 
 	Set<Role> convertStringSetToRoleSetWithStreams(final Set<String> rolesInString) {
-	    return rolesInString.stream().map(roleInString -> {
-	        final Role role = new Role();
-	        role.setName(eRole.valueOf(roleInString));
-	       return role; 
-	    }).collect(Collectors.toSet());
+		return rolesInString.stream().map(roleInString -> {
+			final Role role = new Role();
+			role.setName(eRole.valueOf(roleInString));
+			role.setId(null);
+			roleRepository.save(role);
+			return role;
+		}).collect(Collectors.toSet());
 	}
-	
-	
-	
+
 	@PostMapping(value = { "/register" })
-	public  ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-	
-		
-	
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+
 		if (userServiceImpl.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
 		}
-		
-		
+
 		if (userServiceImpl.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
-		
+
 		LOGGER.info("********************************************************* ");
-		
+
 		LOGGER.info("User username: " + signUpRequest.getUsername());
 		LOGGER.info("User email: " + signUpRequest.getEmail());
 		LOGGER.info("User password: " + signUpRequest.getPassword());
+		LOGGER.info("User available: " + signUpRequest.isAvailable());
 		LOGGER.info("********************************************************* ");
-		LOGGER.info("User ava: " + signUpRequest.isAvailable());
-		
-         //Create New Donor
-		Donor donor = new Donor (signUpRequest.getUsername(), 
-				                 signUpRequest.getEmail(),
-				                 encoder.encode(signUpRequest.getPassword()),
-				                 signUpRequest.getName(),
-				                 signUpRequest.getCity(),
-				                 signUpRequest.getAddress(),
-				                 signUpRequest.getBloodType(),
-				                 signUpRequest.getPostalCode(),
-				                 signUpRequest.isAvailable(),
-				                 signUpRequest.getLat(),
-				                 signUpRequest.getLng());
-		
-		
-		
+		LOGGER.info(signUpRequest.getRoles().toString());
+		// Create New Donor
+		Donor donor = new Donor(signUpRequest.getUsername(),
+				signUpRequest.getEmail(),
+				encoder.encode(signUpRequest.getPassword()),
+				signUpRequest.getName(),
+				signUpRequest.getCity(),
+				signUpRequest.getAddress(),
+				signUpRequest.getBloodType(),
+				signUpRequest.getPostalCode(),
+				signUpRequest.isAvailable(),
+				signUpRequest.getLat(),
+				signUpRequest.getLng());
+
 		Set<String> strRoles = signUpRequest.getRoles();
-		
-		
-		
+
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
@@ -139,79 +131,81 @@ public class HomeController {
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName(eRole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-                       
-					
-					break;
-				default:
-					Role userRole = roleRepository.findByName(eRole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
+					case "admin":
+						Role adminRole = roleRepository.findByName(eRole.ROLE_ADMIN)
+								.orElseThrow(() -> new RuntimeException(
+										"Error: Role is not found."));
+						roles.add(adminRole);
+
+						break;
+					default:
+						Role userRole = roleRepository.findByName(eRole.ROLE_USER)
+								.orElseThrow(() -> new RuntimeException(
+										"Error: Role is not found."));
+						roles.add(userRole);
 				}
 			});
-			
-		}
-		
-			donor.setRoles(roles);
-			
-		
-			LOGGER.info("User password: " + signUpRequest.isAvailable());
-			
-			 
-			userServiceImpl.register(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(), signUpRequest.getCity(),
-					signUpRequest.getPostalCode(), signUpRequest.getAddress(), signUpRequest.getBloodType(), signUpRequest.isAvailable(),
-					signUpRequest.getLat(), signUpRequest.getLng(),convertStringSetToRoleSetWithStreams(signUpRequest.getRoles()), signUpRequest.getPassword());
 
-			return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-			
-			/*	LOGGER.info("User Register Fucntion invoced");
-			LOGGER.info("User name: " + donor.getName());
-			LOGGER.info("User username: " + donor.getUsername());
-			LOGGER.info("User email: " + donor.getEmail());
-			LOGGER.info("User city: " + donor.getCity());
-			LOGGER.info("User postalcode: " + donor.getPostalCode());
-			LOGGER.info("User isAvailable: " + donor.isAvailable());
-			LOGGER.info("User BloodType: " + donor.getBloodType());
-			LOGGER.info("User Lattitude: " + donor.getLat());
-			LOGGER.info("User Longitude: " + donor.getLng()); */
-			
-			/*return userServiceImpl.register(donor.getName(), donor.getUsername(), donor.getEmail(), donor.getCity(),
-					donor.getPostalCode(), donor.getAddress(), donor.getBloodType(), donor.isAvailable(),
-					donor.getLat(), donor.getLng());*/
-}
-	
-	
+		}
+
+		donor.setRoles(roles);
+		userServiceImpl.register(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
+				signUpRequest.getCity(),
+				signUpRequest.getPostalCode(), signUpRequest.getAddress(), signUpRequest.getBloodType(),
+				signUpRequest.isAvailable(),
+				signUpRequest.getLat(), signUpRequest.getLng(),
+				convertStringSetToRoleSetWithStreams(signUpRequest.getRoles()),
+				signUpRequest.getPassword());
+
+		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
+		/*
+		 * LOGGER.info("User Register Fucntion invoced");
+		 * LOGGER.info("User name: " + donor.getName());
+		 * LOGGER.info("User username: " + donor.getUsername());
+		 * LOGGER.info("User email: " + donor.getEmail());
+		 * LOGGER.info("User city: " + donor.getCity());
+		 * LOGGER.info("User postalcode: " + donor.getPostalCode());
+		 * LOGGER.info("User isAvailable: " + donor.isAvailable());
+		 * LOGGER.info("User BloodType: " + donor.getBloodType());
+		 * LOGGER.info("User Lattitude: " + donor.getLat());
+		 * LOGGER.info("User Longitude: " + donor.getLng());
+		 */
+
+		/*
+		 * return userServiceImpl.register(donor.getName(), donor.getUsername(),
+		 * donor.getEmail(), donor.getCity(),
+		 * donor.getPostalCode(), donor.getAddress(), donor.getBloodType(),
+		 * donor.isAvailable(),
+		 * donor.getLat(), donor.getLng());
+		 */
+	}
+
 	@PostMapping(value = { "/registerInstitution" })
-	public  ResponseEntity<?> registerInstitution(@Valid @RequestBody InstitutionSignupRequest institutionSignupRequest) {
-	
+	public ResponseEntity<?> registerInstitution(
+			@Valid @RequestBody InstitutionSignupRequest institutionSignupRequest) {
+
 		if (institutionRepository.existsByUsername(institutionSignupRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
 		}
-		
-		
+
 		if (institutionRepository.existsByEmail(institutionSignupRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
-		
-		
-         //Create New Institution
-		Institution instituion = new Institution (institutionSignupRequest.getUsername(), 
-				                                  institutionSignupRequest.getEmail(),
-				                                  encoder.encode(institutionSignupRequest.getPassword()),
-				                                 institutionSignupRequest.getName(),
-				                                 institutionSignupRequest.getCity(),
-				                                 institutionSignupRequest.getCode(),
-				                                 institutionSignupRequest.getPostalCode());
-		
-		
-		
+
+		// Create New Institution
+		Institution instituion = new Institution(institutionSignupRequest.getUsername(),
+				institutionSignupRequest.getEmail(),
+				encoder.encode(institutionSignupRequest.getPassword()),
+				institutionSignupRequest.getName(),
+				institutionSignupRequest.getCity(),
+				institutionSignupRequest.getCode(),
+				institutionSignupRequest.getPostalCode());
+
 		Set<String> strRoles = institutionSignupRequest.getRoles();
 		Set<Role> roles = new HashSet<>();
 
@@ -222,83 +216,79 @@ public class HomeController {
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName(eRole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
+					case "admin":
+						Role adminRole = roleRepository.findByName(eRole.ROLE_ADMIN)
+								.orElseThrow(() -> new RuntimeException(
+										"Error: Role is not found."));
+						roles.add(adminRole);
 
-					break;
-				default:
-					Role userRole = roleRepository.findByName(eRole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(userRole);
+						break;
+					default:
+						Role userRole = roleRepository.findByName(eRole.ROLE_USER)
+								.orElseThrow(() -> new RuntimeException(
+										"Error: Role is not found."));
+						roles.add(userRole);
 				}
 			});
-			
+
 		}
-		
+
 		instituion.setRoles(roles);
 		institutionRepository.save(instituion);
 
-			return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-			
-			
-}
-	
+		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
-	
+	}
+
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+						loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-		
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
+
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok(new JwtResponse(jwt, 
-												 userDetails.getId(), 
-												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
-												 roles));
+		return ResponseEntity.ok(new JwtResponse(jwt,
+				userDetails.getId(),
+				userDetails.getUsername(),
+				userDetails.getEmail(),
+				roles));
 	}
-	
+
 	@PostMapping("/signinInstitution")
 	public ResponseEntity<?> authenticateInstitution(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+						loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-		
-		InstitutionDetailsImpl InstitutionDetails = (InstitutionDetailsImpl) authentication.getPrincipal();		
+
+		InstitutionDetailsImpl InstitutionDetails = (InstitutionDetailsImpl) authentication.getPrincipal();
 		List<String> roles = InstitutionDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok(new JwtResponse(jwt, 
-				                                 InstitutionDetails.getId(), 
-				                                 InstitutionDetails.getUsername(), 
-												 InstitutionDetails.getEmail(), 
-												 roles));
+		return ResponseEntity.ok(new JwtResponse(jwt,
+				InstitutionDetails.getId(),
+				InstitutionDetails.getUsername(),
+				InstitutionDetails.getEmail(),
+				roles));
 	}
-	
-	
-	
-	
-	
+
 	@PostMapping(value = { "/", "" })
 	public Donor save(@RequestBody Donor user) {
 		user.setId(null);
 		return userServiceImpl.save(user);
-		
-		
+
 	}
 
 	@GetMapping("/findbycity/{city}")

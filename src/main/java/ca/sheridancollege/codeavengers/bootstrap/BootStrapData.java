@@ -8,7 +8,10 @@ import org.springframework.stereotype.Component;
 import ca.sheridancollege.codeavengers.domain.BloodType;
 import ca.sheridancollege.codeavengers.domain.Donor;
 import ca.sheridancollege.codeavengers.domain.Institution;
+import ca.sheridancollege.codeavengers.domain.Role;
+import ca.sheridancollege.codeavengers.domain.eRole;
 import ca.sheridancollege.codeavengers.repositories.InstitutionRepository;
+import ca.sheridancollege.codeavengers.repositories.RoleRepository;
 import ca.sheridancollege.codeavengers.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 
@@ -20,15 +23,12 @@ public class BootStrapData implements CommandLineRunner {
 	private UserRepository userRepository;
 	@Autowired
 	private InstitutionRepository institutionRepository;
+	@Autowired
+	private RoleRepository roleRepository;
 
-	
-	
-	 
-
-	
 	@Override
 	public void run(String... args) throws Exception {
-		
+
 		Institution inst1 = Institution.builder()
 				.userId(generateUserId())
 				.name("Blood Institution #1")
@@ -249,6 +249,11 @@ public class BootStrapData implements CommandLineRunner {
 				.lng(-80.5924)
 				.bloodType(BloodType.BPos)
 				.build();
+		Role r1 = new Role(eRole.ROLE_ADMIN);
+		Role r2 = new Role(eRole.ROLE_USER);
+
+		roleRepository.save(r1);
+		roleRepository.save(r2);
 
 		userRepository.save(u1);
 		userRepository.save(u2);
