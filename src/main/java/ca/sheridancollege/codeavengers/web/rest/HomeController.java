@@ -69,7 +69,7 @@ public class HomeController {
 
 	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);// or getClass();
 
-	@GetMapping(value = { "/", "" })
+	@GetMapping(value = { "/all" })
 	public List<Donor> findAllUsers() {
 		return userServiceImpl.findAll();
 	}
@@ -120,10 +120,17 @@ public class HomeController {
 				signUpRequest.getLat(),
 				signUpRequest.getLng());
 
+		//LOGGER.info("Checkinh123 " + donor.toString());
+		LOGGER.info("Checkinh123 " + encoder.encode(signUpRequest.getPassword()));
+		
+		
 		Set<String> strRoles = signUpRequest.getRoles();
 
 		Set<Role> roles = new HashSet<>();
 
+		
+		LOGGER.info("User role: " + strRoles);
+		
 		if (strRoles == null) {
 			Role userRole = roleRepository.findByName(eRole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -131,7 +138,7 @@ public class HomeController {
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
-					case "admin":
+					case "ROLE_ADMIN":
 						Role adminRole = roleRepository.findByName(eRole.ROLE_ADMIN)
 								.orElseThrow(() -> new RuntimeException(
 										"Error: Role is not found."));
@@ -155,7 +162,7 @@ public class HomeController {
 				signUpRequest.isAvailable(),
 				signUpRequest.getLat(), signUpRequest.getLng(),
 				convertStringSetToRoleSetWithStreams(signUpRequest.getRoles()),
-				signUpRequest.getPassword());
+				encoder.encode(signUpRequest.getPassword()));
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
@@ -243,10 +250,12 @@ public class HomeController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
+		LOGGER.info("User role: " + "********** TESt");
+		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
 						loginRequest.getPassword()));
-
+		LOGGER.info("User role: " + "********** TESt3");
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -255,6 +264,13 @@ public class HomeController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
+		
+		
+		LOGGER.info("User role: " + userDetails.getId());
+		LOGGER.info("User role: " + userDetails.getUsername());
+		LOGGER.info("User role: " + userDetails.getEmail());
+		LOGGER.info("User role: " + roles.toString());
+		
 		return ResponseEntity.ok(new JwtResponse(jwt,
 				userDetails.getId(),
 				userDetails.getUsername(),
