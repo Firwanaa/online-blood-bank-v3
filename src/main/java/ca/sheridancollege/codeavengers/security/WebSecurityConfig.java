@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import ca.sheridancollege.codeavengers.domain.eRole;
 import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 
 @Configuration
@@ -40,6 +42,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
+	
+	/*@Bean
+	  public DaoAuthenticationProvider authenticationProvider() {
+	      DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+	       
+	      authProvider.setUserDetailsService( userService);
+	      authProvider.setPasswordEncoder(passwordEncoder());
+	   
+	      return authProvider;
+	  }*/
 
 	@Bean
 	@Override
@@ -57,9 +69,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/api/donor/**").permitAll().antMatchers("/").permitAll()
-			.antMatchers("/login").permitAll()
-			.antMatchers("/api/test/**").permitAll()
+			.authorizeRequests()
+			.antMatchers("/all").hasRole("ADMIN")
+			.antMatchers("/register").permitAll()
+			.antMatchers("/signin").permitAll()
 			.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
