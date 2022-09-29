@@ -1,5 +1,7 @@
 package ca.sheridancollege.codeavengers.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import ca.sheridancollege.codeavengers.domain.eRole;
 import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
+import ca.sheridancollege.codeavengers.web.rest.HomeController;
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +28,7 @@ import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 		// jsr250Enabled = true,
 		prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-  
+	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	UserServiceImpl userService;
 	
@@ -66,15 +69,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		LOGGER.info("00011********************************************************* ");
 		http.cors().and().csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests()
-			.antMatchers("/all").hasRole("ADMIN")
-			.antMatchers("/register").permitAll()
-			.antMatchers("/signin").permitAll()
+			.authorizeRequests().antMatchers("/api/donor/**").permitAll()
 			.anyRequest().authenticated();
-
+		
+		LOGGER.info("00022222********************************************************* ");
+		
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+		
 	}
 }
+
+
+
+
