@@ -11,11 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +44,7 @@ import ca.sheridancollege.codeavengers.service.impl.UserDetailsImpl;
 import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 
 // Test teste test Sep. 15 2022
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/donor")
 public class HomeController {
@@ -69,8 +71,11 @@ public class HomeController {
 
 	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);// or getClass();
 
-	@GetMapping(value = { "/all" })
+	
+	@GetMapping("all")
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Donor> findAllUsers() {
+		LOGGER.info("000000********************************************************* ");
 		return userServiceImpl.findAll();
 	}
 

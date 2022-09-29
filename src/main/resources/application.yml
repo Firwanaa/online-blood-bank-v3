@@ -9,4 +9,4 @@ spring:
 codeAvengers:
   app:       
      jwtSecret: codeAvengersSecretKey
-     jwtExpirationMs: 1000   
+     jwtExpirationMs: 86400000  
