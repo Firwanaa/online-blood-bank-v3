@@ -44,7 +44,7 @@ import ca.sheridancollege.codeavengers.service.impl.UserDetailsImpl;
 import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 
 // Test teste test Sep. 15 2022
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("/api/donor")
 public class HomeController {
@@ -71,7 +71,6 @@ public class HomeController {
 
 	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);// or getClass();
 
-	
 	@GetMapping("all")
 	@PreAuthorize("hasRole('ADMIN')")
 	public List<Donor> findAllUsers() {
@@ -82,8 +81,8 @@ public class HomeController {
 	Set<Role> convertStringSetToRoleSetWithStreams(final Set<String> rolesInString) {
 		return rolesInString.stream().map(roleInString -> {
 			final Role role = roleRepository.findByName(eRole.valueOf(roleInString)).get();
-			//role.setName(eRole.valueOf(roleInString));
-			//role.setId(null);
+			// role.setName(eRole.valueOf(roleInString));
+			// role.setId(null);
 			// roleRepository.save(role);
 			return role;
 		}).collect(Collectors.toSet());
@@ -125,17 +124,15 @@ public class HomeController {
 				signUpRequest.getLat(),
 				signUpRequest.getLng());
 
-		//LOGGER.info("Checkinh123 " + donor.toString());
+		// LOGGER.info("Checkinh123 " + donor.toString());
 		LOGGER.info("Checkinh123 " + encoder.encode(signUpRequest.getPassword()));
-		
-		
+
 		Set<String> strRoles = signUpRequest.getRoles();
 
 		Set<Role> roles = new HashSet<>();
 
-		
 		LOGGER.info("User role: " + strRoles);
-		
+
 		if (strRoles == null) {
 			Role userRole = roleRepository.findByName(eRole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -256,7 +253,7 @@ public class HomeController {
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		LOGGER.info("User role: " + "********** TESt");
-		
+
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
 						loginRequest.getPassword()));
@@ -269,13 +266,11 @@ public class HomeController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		
-		
 		LOGGER.info("User role: " + userDetails.getId());
 		LOGGER.info("User role: " + userDetails.getUsername());
 		LOGGER.info("User role: " + userDetails.getEmail());
 		LOGGER.info("User role: " + roles.toString());
-		
+
 		return ResponseEntity.ok(new JwtResponse(jwt,
 				userDetails.getId(),
 				userDetails.getUsername(),

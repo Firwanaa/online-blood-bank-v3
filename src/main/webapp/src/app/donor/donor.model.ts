@@ -20,6 +20,7 @@ export class Donor {
     public name: string;
     public username: string;
     public email: string;
+    public password: string;
     public city: string;
     public bloodType: BloodType;
     public postalCode: string;
@@ -33,6 +34,7 @@ export class Donor {
         name: string,
         username: string,
         email: string,
+        password: string,
         city: string,
         postalCode: string,
         address: string,
@@ -45,6 +47,7 @@ export class Donor {
         this.name = name;
         this.username = username;
         this.email = email;
+        this.password = password;
         this.city = city;
         this.postalCode = postalCode;
         this.address = address;

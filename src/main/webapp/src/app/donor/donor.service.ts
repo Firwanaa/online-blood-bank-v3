@@ -27,6 +27,10 @@ export class DonorService {
     addDonor(donor: Donor) {
         return this.http.post('/api/donor/register', donor);
     }
+    signIn(donor: Donor) {
+        return this.http.post('/api/donor/signin', donor);
+    }
+
 
     findByDonorBloodtype(bloodtype: BloodType) {
         return this.http.get<Donor[]>(
@@ -43,4 +47,8 @@ export class DonorService {
     }
 
     onDonorAdded = new EventEmitter<Donor>();
+
+  getHomePage(){
+    return this.http.get('/api/donor', { responseType: 'text' });
+  }
 }

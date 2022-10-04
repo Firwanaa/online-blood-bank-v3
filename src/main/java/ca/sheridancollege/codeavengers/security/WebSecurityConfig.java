@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import ca.sheridancollege.codeavengers.domain.eRole;
 import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 import ca.sheridancollege.codeavengers.web.rest.HomeController;
 
@@ -31,8 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	UserServiceImpl userService;
-	
-	
+
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 
@@ -40,21 +37,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthTokenFilter authenticationJwtTokenFilter() {
 		return new AuthTokenFilter();
 	}
-	
+
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
-	
-	/*@Bean
-	  public DaoAuthenticationProvider authenticationProvider() {
-	      DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-	       
-	      authProvider.setUserDetailsService( userService);
-	      authProvider.setPasswordEncoder(passwordEncoder());
-	   
-	      return authProvider;
-	  }*/
+
+	/*
+	 * @Bean
+	 * public DaoAuthenticationProvider authenticationProvider() {
+	 * DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+	 * 
+	 * authProvider.setUserDetailsService( userService);
+	 * authProvider.setPasswordEncoder(passwordEncoder());
+	 * 
+	 * return authProvider;
+	 * }
+	 */
 
 	@Bean
 	@Override
@@ -69,21 +68,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		LOGGER.info("00011********************************************************* ");
 		http.cors().and().csrf().disable()
-			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests().antMatchers("/api/donor/**").permitAll()
-			.anyRequest().authenticated();
-		
+				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.authorizeRequests().antMatchers("/").permitAll()
+				.anyRequest().authenticated();
+
 		LOGGER.info("00022222********************************************************* ");
-		
+
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-		
+
 	}
 }
-
-
-
-

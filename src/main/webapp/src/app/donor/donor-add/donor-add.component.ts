@@ -28,6 +28,7 @@ export class DonorAddComponent implements OnInit {
     name: string;
     username: string;
     email: string;
+    password: string;
     city: string;
     postalCode: string;
     address: string;
@@ -47,6 +48,7 @@ export class DonorAddComponent implements OnInit {
             this.name,
             this.username,
             this.email,
+            this.password,
             this.city,
             this.postalCode,
             this.address,
@@ -59,6 +61,7 @@ export class DonorAddComponent implements OnInit {
         console.log(this.name);
         console.log(this.username);
         console.log(this.email);
+        console.log(this.password);
         console.log(this.city);
         console.log(this.postalCode);
         console.log(this.address);
@@ -83,6 +86,7 @@ export class DonorAddComponent implements OnInit {
                 this.name = '';
                 this.username = '';
                 this.email = '';
+                this.password = '';
                 this.city = '';
                 this.postalCode = '';
                 this.address = '';

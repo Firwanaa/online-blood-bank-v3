@@ -1,3 +1,4 @@
+import {AuthInterceptor} from '../_helpers/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,9 @@ import { DonorComponent } from './donor/donor.component';
 import { DonorService } from './donor/donor.service';
 import { HeaderComponent } from './header/header.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +24,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
         DonorAddComponent,
         DonorListComponent,
         HeaderComponent,
+        LoginComponent,
+        HomeComponent,
+        ProfileComponent,
     ],
     imports: [
         GooglePlaceModule,
@@ -36,7 +43,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
             },
         }),
     ],
-    providers: [DonorService],
+    providers: [DonorService, AuthInterceptor],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

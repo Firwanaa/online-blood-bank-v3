@@ -4,8 +4,7 @@ spring:
         user: admin
         password: admin
         uri: mongodb://localhost:27017/bloodbank
-  
-  
+
 codeAvengers:
   app:       
      jwtSecret: codeAvengersSecretKey
