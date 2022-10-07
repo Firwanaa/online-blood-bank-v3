@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { BloodType } from '../enumerations/bloodType.enum';
@@ -8,10 +9,12 @@ import { Donor } from './donor.model';
 export class DonorService {
     constructor(private http: HttpClient) {}
 
-    getDonors() {
-        return this.http.get<Donor[]>('/api/donor/');
-    }
-
+    // getDonors() {
+    //     return this.http.get<Donor[]>('/api/donor/all');
+    // }
+  getDonors(){
+    return this.http.get<Donor[]>(`/api/donor/all`);
+  }
     sendEmergencyRequest() {
         console.log('Emergency Service');
         return this.http.get(`/api/donor/emergencyrequest`);

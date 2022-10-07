@@ -45,6 +45,7 @@ import ca.sheridancollege.codeavengers.service.impl.UserServiceImpl;
 
 // Test teste test Sep. 15 2022
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
+
 @RestController
 @RequestMapping("/api/donor")
 public class HomeController {
@@ -71,8 +72,8 @@ public class HomeController {
 
 	private Logger LOGGER = LoggerFactory.getLogger(HomeController.class);// or getClass();
 
-	@GetMapping("all")
 	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/all")
 	public List<Donor> findAllUsers() {
 		LOGGER.info("000000********************************************************* ");
 		return userServiceImpl.findAll();
@@ -110,11 +111,14 @@ public class HomeController {
 		LOGGER.info("User password: " + signUpRequest.getPassword());
 		LOGGER.info("User available: " + signUpRequest.isAvailable());
 		LOGGER.info("********************************************************* ");
-		LOGGER.info(signUpRequest.getRoles().toString());
 		// Create New Donor
+		Set<String> rs = new HashSet<String>();
+		rs.add("ROLE_USER");
+		signUpRequest.setRoles(rs);
 		Donor donor = new Donor(signUpRequest.getUsername(),
 				signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()),
+
 				signUpRequest.getName(),
 				signUpRequest.getCity(),
 				signUpRequest.getAddress(),
@@ -123,7 +127,9 @@ public class HomeController {
 				signUpRequest.isAvailable(),
 				signUpRequest.getLat(),
 				signUpRequest.getLng());
-
+		// Role r1 = new Role(eRole.ROLE_USER);
+		// Set roles = new HashSet<>();
+		// roles.add(r1);
 		// LOGGER.info("Checkinh123 " + donor.toString());
 		LOGGER.info("Checkinh123 " + encoder.encode(signUpRequest.getPassword()));
 
@@ -158,6 +164,7 @@ public class HomeController {
 		}
 
 		donor.setRoles(roles);
+		LOGGER.info(signUpRequest.getRoles().toString());
 		userServiceImpl.register(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
 				signUpRequest.getCity(),
 				signUpRequest.getPostalCode(), signUpRequest.getAddress(), signUpRequest.getBloodType(),
@@ -307,6 +314,7 @@ public class HomeController {
 
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/findbycity/{city}")
 	public List<Donor> findByCity(@PathVariable("city") String city) {
 		System.out.println("test " + city);
@@ -316,6 +324,7 @@ public class HomeController {
 	}
 
 	// not complete
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/sendrequest/{username}")
 	public Donor sendRequest(@PathVariable("username") String username) {
 		userServiceImpl.sendRequest(username);
@@ -323,6 +332,7 @@ public class HomeController {
 		return null;
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/emergencyrequest")
 	public void sendEmergencyRequest() {
 		System.out.println("Emergency Email");
@@ -340,12 +350,14 @@ public class HomeController {
 		return user;
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/findbybloodtype/{bloodtype}")
 	public List<Donor> findByBloodType(@PathVariable("bloodtype") String bloodtype) {
 		List<Donor> userList = userServiceImpl.findUserByBloodType(BloodType.valueOf(bloodtype));
 		return userList;
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/findByAvailability/{isAvailable}")
 	public List<Donor> findByIsAvailable(@PathVariable("isAvailable") boolean isAvailable) {
 		List<Donor> userList = userServiceImpl.findByIsAvailable(isAvailable);

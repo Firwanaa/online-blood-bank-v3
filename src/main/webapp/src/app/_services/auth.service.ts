@@ -9,6 +9,10 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+//   headers=  new HttpHeaders();
+//     header.append('Content-Type', 'application/json');
+//   header.append('Access-Control-Allow-Origin', '*');
+//   header.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +25,7 @@ export class AuthService {
       password
     }, httpOptions);
   }
-
+  //all() {return this.http.get(AUTH_API + 'all', { responseType: 'text'}, httpOptions);}
   register(name: string, username: string, email: string, password: string, city: string, postalCode: string, address: string,bloodType: BloodType, isAvailable: boolean, lat: number, lng: number): Observable<any> {
     return this.http.post(AUTH_API + 'register', {
       username,

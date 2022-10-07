@@ -43,17 +43,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
 
-	/*
-	 * @Bean
-	 * public DaoAuthenticationProvider authenticationProvider() {
-	 * DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-	 * 
-	 * authProvider.setUserDetailsService( userService);
-	 * authProvider.setPasswordEncoder(passwordEncoder());
-	 * 
-	 * return authProvider;
-	 * }
-	 */
+	// @Bean
+	// public DaoAuthenticationProvider authenticationProvider() {
+	// DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+	// authProvider.setUserDetailsService(userService);
+	// authProvider.setPasswordEncoder(passwordEncoder());
+
+	// return authProvider;
+	// }
 
 	@Bean
 	@Override
@@ -69,16 +67,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		LOGGER.info("00011********************************************************* ");
+		LOGGER.info("00011*********************************************************");
 		http.cors().and().csrf().disable()
 				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-				.authorizeRequests().antMatchers("/").permitAll()
+				.authorizeRequests()
+				.antMatchers("/api/donor/**", "/**").permitAll()
+				//.antMatchers("/api/donor/all/**", "/all/**").hasRole("ADMIN")
 				.anyRequest().authenticated();
 
-		LOGGER.info("00022222********************************************************* ");
+		LOGGER.info("00022222*********************************************************");
 
+		// http.addFilterBefore(authenticationJwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-
 	}
+
+	// @Bean
+	// public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	// http.cors().and().csrf().disable()
+	// .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+	// .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+	// .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+	// .antMatchers("/api/test/**").permitAll()
+	// .anyRequest().authenticated();
+
+	// http.authenticationProvider(authenticationProvider());
+
+	// http.addFilterBefore(authenticationJwtTokenFilter(),
+	// UsernamePasswordAuthenticationFilter.class);
+
+	// return http.build();
+	// }
 }

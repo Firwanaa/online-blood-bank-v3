@@ -1,4 +1,4 @@
-import {AuthInterceptor} from '../_helpers/auth.interceptor';
+import {authInterceptorProviders} from '../_helpers/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -43,7 +43,7 @@ import { ProfileComponent } from './profile/profile.component';
             },
         }),
     ],
-    providers: [DonorService, AuthInterceptor],
+    providers: [DonorService, authInterceptorProviders],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

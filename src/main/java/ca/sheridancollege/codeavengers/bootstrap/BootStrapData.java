@@ -1,8 +1,12 @@
 package ca.sheridancollege.codeavengers.bootstrap;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
@@ -25,17 +29,11 @@ public class BootStrapData implements CommandLineRunner {
 	private InstitutionRepository institutionRepository;
 	@Autowired
 	private RoleRepository roleRepository;
+	@Autowired
+	PasswordEncoder encoder;
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		Institution inst1 = Institution.builder()
-				.userId(generateUserId())
-				.name("Blood Institution #1")
-				.username("inst1")
-				.city("Mississauga")
-				.postalCode("L2S 4FD")
-				.build();
 
 		Donor u1 = Donor.builder()
 				.name("Alqasasm Firwana")
@@ -254,6 +252,40 @@ public class BootStrapData implements CommandLineRunner {
 
 		roleRepository.save(r1);
 		roleRepository.save(r2);
+		Set<Role> roles = new HashSet<Role>();
+		Set<Role> roles2 = new HashSet<Role>();
+		Role r = new Role(eRole.ROLE_ADMIN);
+		roles.add(r1);
+		roles2.add(r2);
+		Donor inst1 = Donor.builder()
+				.userId(generateUserId())
+				.name("Blood Institution #1")
+				.username("admin123")
+				.password(encoder.encode("admin123"))
+				.roles(roles)
+				.email("firwanaa@sheridancollege.ca")
+				.city("Mississauga")
+				.isAvailable(true)
+				.postalCode("L3Z 4R2")
+				.lat(43.5700932)
+				.lng(-79.62716389)
+				.bloodType(BloodType.ABNeg)
+				.build();
+
+		Donor user = Donor.builder()
+				.name("User User")
+				.username("user123")
+				.userId(generateUserId())
+				.password(encoder.encode("user123"))
+				.roles(roles2)
+				.email("firwanaa@sheridancollege.ca")
+				.city("Mississauga")
+				.isAvailable(true)
+				.postalCode("L3Z 4R2")
+				.lat(43.5700932)
+				.lng(-79.62716389)
+				.bloodType(BloodType.ABNeg)
+				.build();
 
 		userRepository.save(u1);
 		userRepository.save(u2);
@@ -272,7 +304,9 @@ public class BootStrapData implements CommandLineRunner {
 		userRepository.save(u15);
 		userRepository.save(u16);
 		userRepository.save(u17);
-		institutionRepository.save(inst1);
+		userRepository.save(inst1);
+		userRepository.save(user);
+		// institutionRepository.save(inst1);
 
 	}
 
