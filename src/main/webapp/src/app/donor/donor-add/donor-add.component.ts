@@ -91,7 +91,7 @@ export class DonorAddComponent implements OnInit {
                 this.postalCode = '';
                 this.address = '';
                 this.bloodType = null;
-                this.isAvailable = false;
+                this.isAvailable = null;
                 this.lat = null;
                 this.lng = null;
                 // console.log(this.name);

@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public Donor register(String name, String username, String email, String city, String postalcode,
-			String address, BloodType bloodType, Boolean isAvailable, Double lat, Double lng,
+			String address, BloodType bloodType, boolean isAvailable, Double lat, Double lng,
 			Set<Role> role, String password) {
 		// TODO we should validate if username or email exists in DB
 		Donor user = new Donor();
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		user.setPostalCode(postalcode);
 		user.setLat(lat);
 		user.setLng(lng);
-		user.setIsAvailable(isAvailable);
+		user.setAvailable(isAvailable);
 		user.setRoles(role);
 		user.setPassword(password);
 

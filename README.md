@@ -31,3 +31,8 @@ A Capstone project: An Idea to create an Online Banking System
 ### Notes: 
 * ##### BE: Backend "Spring Boot API"
 * ##### FE: Frontend "Angular Frontend"
+
+* ##### To build on Microsoft Windows, go first to `package.json` and remove the single quotes `dist/**`  
+> before: `"deploy": "copyfiles -f 'dist/**' ../resources/static",`
+> after: `"deploy": "copyfiles -f dist/** ../resources/static",`
+* ##### To build Angular frontend `npm run build`

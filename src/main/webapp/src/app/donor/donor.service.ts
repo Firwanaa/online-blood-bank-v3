@@ -54,4 +54,5 @@ export class DonorService {
   getHomePage(){
     return this.http.get('/api/donor', { responseType: 'text' });
   }
+
 }

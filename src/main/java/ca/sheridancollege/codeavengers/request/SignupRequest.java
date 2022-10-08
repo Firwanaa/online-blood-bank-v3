@@ -37,7 +37,7 @@ public class SignupRequest {
 		@Enumerated(EnumType.STRING)
 		private BloodType bloodType;
 		private String postalCode;
-		private Boolean isAvailable;
+		private boolean isAvailable;
 		private Double lat;
 		private  Double lng;
 	  
@@ -89,11 +89,11 @@ public class SignupRequest {
 			this.postalCode = postalCode;
 		}
 
-		public Boolean isAvailable() {
+		public boolean isAvailable() {
 			return isAvailable;
 		}
 
-		public void setAvailable(Boolean isAvailable) {
+		public void setAvailable(boolean isAvailable) {
 			this.isAvailable = isAvailable;
 		}
 
