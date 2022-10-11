@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import ca.sheridancollege.codeavengers.domain.BloodType;
 import ca.sheridancollege.codeavengers.domain.Donor;
-import ca.sheridancollege.codeavengers.domain.Institution;
 import ca.sheridancollege.codeavengers.domain.Role;
 import ca.sheridancollege.codeavengers.domain.eRole;
 import ca.sheridancollege.codeavengers.repositories.InstitutionRepository;
@@ -34,7 +33,7 @@ public class BootStrapData implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		//43.64578155227945, -79.70833041803746
 		Donor u1 = Donor.builder()
 				.name("Alqasasm Firwana")
 				.username("Firwanaa123")
@@ -43,8 +42,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(true)
 				.postalCode("L3Z 4R2")
-				.lat(43.5700932)
-				.lng(-79.62716389)
+				.lat(43.64578155227945)
+				.lng(-79.70833041803746)
 				.bloodType(BloodType.ABNeg)
 				.build();
 
@@ -282,8 +281,8 @@ public class BootStrapData implements CommandLineRunner {
 				.city("Mississauga")
 				.isAvailable(true)
 				.postalCode("L3Z 4R2")
-				.lat(43.5700932)
-				.lng(-79.62716389)
+				.lat(43.5700952)
+				.lng(-79.62716329)
 				.bloodType(BloodType.ABNeg)
 				.build();
 

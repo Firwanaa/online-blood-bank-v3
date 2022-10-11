@@ -116,6 +116,7 @@ export class DonorListComponent implements OnInit {
         scaledSize: new google.maps.Size(50, 50), // scaled size
     };
     initMap(donors: Donor[]): void {
+        var markers = [];
         const myLatLng = { lat: 43.6532, lng: -79.3832 };
         const institute = { lat: 43.65602, lng: -79.7387 };
         const map = new google.maps.Map(
@@ -127,13 +128,14 @@ export class DonorListComponent implements OnInit {
         );
 
         donors.forEach((d) => {
-            new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: { lat: d['lat'], lng: d['lng'] },
                 map,
                 label: d['bloodType'],
-                title: 'Username: ' + d['username'],
+                title: d['username'],
                 icon: this.person_icon,
             });
+            markers.push(marker);
         });
         new google.maps.Marker({
             position: institute,
@@ -141,10 +143,22 @@ export class DonorListComponent implements OnInit {
             title: 'institution#1!',
             icon: this.hospital_icon,
         });
+
+            markers.forEach((marker) => {
+        marker.addListener("click", () => {
+        this.SendRequest(marker.title);
+        console.log(marker.title);
+        });
+    });
     }
 
-    SendRequest(email: String) {
-        this.donorService.SendRequest(email).subscribe();
+
+
+    SendRequest(username: String) {
+        this.donorService.SendRequest(username).subscribe();
+        console.log(username);
         this.notificationService.notify('success', ' Email sent successfully!');
     }
+
+
 }
