@@ -1,6 +1,13 @@
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<!-- Bootstrap Font Icon CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Change This</a>
+  <nav id="col" class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#"><img src="src/assets/Capture.PNG" width="55px" height="55px" />Online
+      Blood Bank
+    </a>
+
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -13,111 +20,109 @@
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a href="/signin" class="nav-link" routerLink="signin">Login</a>
-      </li>
-    </ul>
+    <div id="navi">
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/signin" class="nav-link" routerLink="signin"><i class="bi-box-arrow-in-right"></i>Login</a>
+        </li>
+      </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" (click)="logout()"><i class="bi-box-arrow-in-left"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <div class="container">
     <router-outlet></router-outlet>
   </div>
 </div>
-<section id="main" >
-	<app-header></app-header>
+<section id="main">
+  <app-header></app-header>
 
 
-	<div class="container">
-   	 <!--  <app-donor></app-donor>-->
-    	<notifier-container></notifier-container>
-  	  <a id="btn1" class="btn btn-secondary" routerLink="all">View all Donnors</a>
-  	  <a id="btn2" class="btn btn-secondary" routerLink="register">Register Here</a>
-   	 <router-outlet></router-outlet>
+  <div class="container">
+    <!--  <app-donor></app-donor>-->
+    <notifier-container></notifier-container>
+    <a id="btn1" class="btn btn-secondary" routerLink="all">View all Donors</a>
+    <a id="btn2" class="btn btn-secondary" routerLink="register">Register Here</a>
+    <router-outlet></router-outlet>
 
-	</div>
-	<img class="image-divider"
-       src="src/assets/divider.png" />
-       <br>
+  </div>
+  <img class="image-divider" src="src/assets/divider.png" />
+  <br>
 
-       <h1 >Lets Save a life, if we can! </h1>
+  <h1>Lets save a life, if we can!</h1>
 
-	<!-- <img id="pic" src="../assets/blood.jpg" width=400px> -->
-
+  <!-- <img id="pic" src="../assets/blood.jpg" width=400px> -->
 
 
 
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-6">
-            <h6>About</h6>
-            <p class="text-justify">In today's world a number of online blood bank databases are available,
-             however none of them offers the capability for the direct contact between the donor and the recipient.
-             Online blood bank is an initiative to decrease the mortality rate
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify">In today's world a number of online blood bank databases are available,
+            however none of them offers the capability for the direct contact between the donor and the recipient.
+            Online blood bank is an initiative to decrease the mortality rate
             in all the countries by providing a source to find blood easily by bring the donor to the recipient
-            either discreetly or with a happiness on face by exchanging some hugs.  </p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <h6>Services</h6>
-            <ul class="footer-links">
-              <li><a href="">Research</a></li>
-              <li><a href="">careers</a></li>
-              <li><a href="">Partners</a></li>
-              <li><a href="">FAQs</a></li>
-              <li><a href="">Benefits</a></li>
-
-            </ul>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
-            <ul class="footer-links">
-              <li><a href="">About Us</a></li>
-              <li><a href="">Contact Us</a></li>
-              <li><a href="">Contribute</a></li>
-              <li><a href="">Privacy Policy</a></li>
-              <li><a href="">Sitemap</a></li>
-            </ul>
-          </div>
+            either discreetly or with a happiness on face by exchanging some hugs. </p>
         </div>
-        <hr>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
-         <a href="#">Online Blood Bank</a>.
-            </p>
-          </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <ul class="social-icons">
-              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
+        <div class="col-xs-6 col-md-3">
+          <h6>Services</h6>
+          <ul class="footer-links">
+            <li><a href="">Research</a></li>
+            <li><a href="">careers</a></li>
+            <li><a href="">Partners</a></li>
+            <li><a href="">FAQs</a></li>
+            <li><a href="">Benefits</a></li>
+
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Contribute</a></li>
+            <li><a href="">Privacy Policy</a></li>
+            <li><a href="">Sitemap</a></li>
+          </ul>
         </div>
       </div>
-</footer>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
+            <a href="#">Online Blood Bank</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
 </section>
-
-
-

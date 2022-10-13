@@ -44,6 +44,10 @@ export class DonorService {
     findByCity(city: String) {
         return this.http.get<Donor[]>(`/api/donor/findbycity/${city}`);
     }
+    
+    findByUsername(username: String) {
+        return this.http.get<Donor>(`/api/donor/getProfile/${username}`);
+        }
 
     SendRequest(username: String) {
         return this.http.get<Donor[]>(`/api/donor/sendrequest/${username}`);

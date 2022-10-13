@@ -18,7 +18,7 @@
 
 
 button{
-	margin-right:15px;
+	margin-right:10px;
 	margin-bottom:5px;
 	background-color: #AA336A;
 	color:white;
@@ -32,7 +32,7 @@ button{
 
 #sec1{
 	position:relative;
-	left:18%
+	left:16%
 }
 
 
@@ -41,11 +41,11 @@ input{height:35px}
 select{height:35px}
 #sec2{
 	position:relative;
-	left:38%;
+	left:40%;
 }
 #sec3{
 	position:relative;
-	left:25%;
+	left:27%;
 }
 
 

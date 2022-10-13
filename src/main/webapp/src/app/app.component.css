@@ -6,7 +6,6 @@
 
 	background-size: cover;
 
-
 }
 .image-divider {
   margin: 20px 0;
@@ -22,7 +21,7 @@
 
 h1{
 	position:relative;
-	left:32%;
+	left:35%;
 	color: #AA336A;
 }
 
@@ -202,4 +201,14 @@ h1{
     font-weight:600
   }
 }
+#col{
+	background-color:#AA336A;
+}
+#navi{
+	position:relative;
+	left:65%;
+}
+nav .navbar-nav li a{
+  color: white;
+  }
 

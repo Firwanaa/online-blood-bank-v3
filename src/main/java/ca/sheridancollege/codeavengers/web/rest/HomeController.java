@@ -339,6 +339,13 @@ public class HomeController {
 		userServiceImpl.sendEmergencyRequest();
 	}
 
+	@GetMapping("/getProfile/{username}")
+	public Donor getUser(@PathVariable("username") String username) {
+		System.out.println(" current user");
+		Donor curruntUser = userServiceImpl.findUserByUsername(username);
+		return curruntUser;
+	}
+
 	@GetMapping("/testapi")
 	public void testApi() {
 		System.out.println("Test Api******************");
