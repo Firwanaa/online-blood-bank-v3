@@ -1,3 +1,4 @@
+import {HashLocationStrategy} from '@angular/common/common';
 import {authInterceptorProviders} from '../_helpers/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';

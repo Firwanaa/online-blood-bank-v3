@@ -1,4 +1,5 @@
 import {TokenStorageService} from './_services/token-storage.service';
+import {Router} from '@angular/router';
 import {DonorService} from './donor/donor.service';
 import { Component } from '@angular/core';
 
@@ -14,7 +15,7 @@ export class AppComponent   {
   showDonorList= false;
 //   showModeratorBoard = false;
   username?: string;
-      constructor(private donorService: DonorService,private tokenStorageService: TokenStorageService) { }
+      constructor(private donorService: DonorService,private tokenStorageService: TokenStorageService, private router: Router) { }
 
     title = 'Online Blood Bank';
       ngOnInit(): void {
@@ -33,6 +34,10 @@ export class AppComponent   {
 
   logout(): void {
     this.tokenStorageService.signOut();
+    // window.location.reload();
+this.router.navigateByUrl('')
+  .then(() => {
     window.location.reload();
+  });
   }
 }
