@@ -17,13 +17,13 @@
       </li>
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li>
+      </li> 
     </ul>
 
     <div id="navi">
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
-          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+          <a href="/register" class="nav-link" routerLink="register"><i class="bi bi-person-fill"></i>Register</a>
         </li>
         <li class="nav-item">
           <a href="/signin" class="nav-link" routerLink="signin"><i class="bi-box-arrow-in-right"></i>Login</a>
@@ -32,7 +32,7 @@
 
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+          <a href="/profile" class="nav-link" routerLink="profile"><i class="bi bi-person-fill"></i>{{ username }}</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link" (click)="logout()"><i class="bi-box-arrow-in-left"></i>Logout</a>

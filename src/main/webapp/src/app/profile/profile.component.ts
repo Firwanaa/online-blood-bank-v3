@@ -12,8 +12,8 @@ export class ProfileComponent implements OnInit {
   currentUser: any;
   donor: Donor;
   username: String;
-  city: String;
-  postalCode: String;
+/*   city: String;
+  postalCode: String; */
 
 
   constructor(private token: TokenStorageService, private donorService: DonorService) { }
@@ -25,9 +25,9 @@ export class ProfileComponent implements OnInit {
       (donor: any) => {
         console.log(donor);
          this.donor = donor;
-        //this.city = donor.city;
-        //this.postalCode = donor.postalCode;
-        console.log(donor.city);
+    /*     this.city = donor.city;
+        this.postalCode = donor.postalCode;
+        console.log(donor.city); */
         }, 
          (error) => console.log(error)); 
         }
