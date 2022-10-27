@@ -17,6 +17,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import { ProfileComponent } from './profile/profile.component';
         LoginComponent,
         HomeComponent,
         ProfileComponent,
+        AboutUsComponent,
+        ContactComponent,
     ],
     imports: [
         GooglePlaceModule,

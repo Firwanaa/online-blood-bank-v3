@@ -17,10 +17,10 @@
       </li>
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li> 
+      </li>
     </ul>
 
-    <div id="navi">
+    <div class="navi-right">
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
           <a href="/register" class="nav-link" routerLink="register"><i class="bi bi-person-fill"></i>Register</a>
@@ -32,7 +32,7 @@
 
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a href="/profile" class="nav-link" routerLink="profile"><i class="bi bi-person-fill"></i>{{ username }}</a>
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link" (click)="logout()"><i class="bi-box-arrow-in-left"></i>Logout</a>
@@ -46,7 +46,7 @@
   </div>
 </div>
 <section id="main">
-  <app-header></app-header>
+  <!--<app-header></app-header>-->
 
 
   <div class="container">
@@ -55,7 +55,6 @@
     <!-- <a id="btn1" class="btn btn-secondary" routerLink="all">View all Donors</a>
     <a id="btn2" class="btn btn-secondary" routerLink="register">Register Here</a> -->
     <router-outlet></router-outlet>
-
   </div>
   <img class="image-divider" src="src/assets/divider.png" />
   <br>
@@ -94,8 +93,8 @@
         <div class="col-xs-6 col-md-3">
           <h6>Quick Links</h6>
           <ul class="footer-links">
-            <li><a href="">About Us</a></li>
-            <li><a href="">Contact Us</a></li>
+            <li><a href="/about-us" routerLink="about-us">About Us</a></li>
+            <li><a href="/contact" routerLink="contact">Contact Us</a></li>
             <li><a href="">Contribute</a></li>
             <li><a href="">Privacy Policy</a></li>
             <li><a href="">Sitemap</a></li>
@@ -123,6 +122,4 @@
       </div>
     </div>
   </footer>
-
-
 </section>
