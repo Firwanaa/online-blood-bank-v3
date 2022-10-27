@@ -119,6 +119,12 @@ export class DonorListComponent implements OnInit {
         var markers = [];
         const myLatLng = { lat: 43.6532, lng: -79.3832 };
         const institute = { lat: 43.65602, lng: -79.7387 };
+        const institute1 = { lat: 43.7473, lng: -79.7435 };
+        const institute2 = { lat: 43.6590423, lng: -79.3905526 };
+        const institute3 = { lat: 43.5562, lng: -80.2533 };
+        const institute4 = { lat: 43.4503623, lng:-79.766946 }
+        const institute5 = { lat: 43.456381, lng: -80.512502 } 
+        
         const map = new google.maps.Map(
             document.getElementById('map') as HTMLElement,
             {
@@ -143,6 +149,39 @@ export class DonorListComponent implements OnInit {
             title: 'institution#1!',
             icon: this.hospital_icon,
         });
+        new google.maps.Marker({
+            position: institute1,
+            map,
+            title: 'William Osler Hospital',
+            icon: this.hospital_icon,
+        });
+
+        new google.maps.Marker({
+            position: institute2,
+            map,
+            title: 'Toronto General Hospital',
+            icon: this.hospital_icon,
+        });
+
+        new google.maps.Marker({
+            position: institute3,
+            map,
+            title: 'Guelph General Hospital',
+            icon: this.hospital_icon,
+        });
+        new google.maps.Marker({
+            position: institute4,
+            map,
+            title: 'Oakville Trafalgar Memorial Hospital',
+            icon: this.hospital_icon,
+        });
+        new google.maps.Marker({
+            position: institute5,
+            map,
+            title: 'Grand River Hospital',
+            icon: this.hospital_icon,
+        });
+
 
             markers.forEach((marker) => {
         marker.addListener("click", () => {

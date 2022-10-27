@@ -21,7 +21,7 @@
 
 h1{
 	position:relative;
-	left:35%;
+  text-align: center;
 	color: #AA336A;
 }
 
@@ -204,9 +204,9 @@ h1{
 #col{
 	background-color:#AA336A;
 }
-#navi{
-	position:relative;
-	left:65%;
+.navi-right{
+	position: absolute;
+  right: 1%;
 }
 nav .navbar-nav li a{
   color: white;
