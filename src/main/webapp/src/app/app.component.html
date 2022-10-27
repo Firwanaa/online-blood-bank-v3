@@ -13,14 +13,14 @@
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
       <li class="nav-item" *ngIf="showDonorList">
-        <a href="/all" class="nav-link" routerLink="all">Admin Board</a>
+        <a href="/all" class="nav-link" routerLink="all">Admin's Board</a>
       </li>
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
     </ul>
 
-    <div id="navi">
+    <!-- <div id="navi"> -->
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
           <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
@@ -38,7 +38,7 @@
           <a href="#" class="nav-link" (click)="logout()"><i class="bi-box-arrow-in-left"></i>Logout</a>
         </li>
       </ul>
-    </div>
+   <!--   </div>-->
   </nav>
 
   <div class="container">
@@ -60,7 +60,41 @@
   <img class="image-divider" src="src/assets/divider.png" />
   <br>
 
-  <h1>Lets save a life, if we can!</h1>
+
+
+
+	<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto flex flex-col">
+    <div class="lg:w-4/6 mx-auto">
+      <div class="rounded-lg h-64 overflow-hidden">
+        <img alt="content" id="img" class="object-cover object-center h-full w-full" src="src/assets/img2.jpg">
+      </div>
+      <div class="flex flex-col sm:flex-row mt-10">
+        <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+         
+          <div class="flex flex-col items-center text-center justify-center">
+            <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Lets register for a noble cause.</h2>
+            <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
+            <p class="text-base">Be the reason for someone's heartbeat by donating blood.</p>
+          </div>
+        </div>
+        <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+          <p class="leading-relaxed text-lg mb-4">Nobody should have second thoughts if it comes to save someone's life. They why not register and make some time to save someone and their family from grief. Sign up and you will be given a chance to do a noble cause.  </p>
+          <a class="text-indigo-500 inline-flex items-center">Learn More
+            
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <img class="image-divider" src="src/assets/divider.png" />
+  <br>
+  <h1>Lets save a life, if we can.</h1>
 
   <!-- <img id="pic" src="../assets/blood.jpg" width=400px> -->
 
@@ -94,8 +128,8 @@
         <div class="col-xs-6 col-md-3">
           <h6>Quick Links</h6>
           <ul class="footer-links">
-            <li><a href="">About Us</a></li>
-            <li><a href="">Contact Us</a></li>
+            <li><a href="src/assets/aboutUs.html">About us</a></li>
+            <li><a href="src/assets/contactUs.html">Contact Us</a></li>
             <li><a href="">Contribute</a></li>
             <li><a href="">Privacy Policy</a></li>
             <li><a href="">Sitemap</a></li>

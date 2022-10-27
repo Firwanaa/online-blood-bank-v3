@@ -206,9 +206,19 @@ h1{
 }
 #navi{
 	position:relative;
-	left:65%;
+	left:45%;
 }
 nav .navbar-nav li a{
   color: white;
   }
+  
+  #img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  }
+  
+  
+  
 
