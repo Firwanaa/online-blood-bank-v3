@@ -17,7 +17,19 @@
 	left:34%;
 }
  */
-
+.img-fluid{
+	
+	max-width: 100%;
+	height: 400px;
+	  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
+   border-radius: 50px 50px;
+	
+}
+.ctImg{
+	text-align: center;
+}
 
 h1{
 	position:relative;
