@@ -15,7 +15,7 @@ export class AppComponent   {
   showDonorList= false;
 //   showModeratorBoard = false;
   username?: string;
-      constructor(private donorService: DonorService,private tokenStorageService: TokenStorageService, private router: Router) { }
+      constructor(private donorService: DonorService,private tokenStorageService: TokenStorageService, public router: Router) { }
 
     title = 'Online Blood Bank';
       ngOnInit(): void {

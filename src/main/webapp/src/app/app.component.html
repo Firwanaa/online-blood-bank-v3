@@ -58,7 +58,14 @@
   </div>
   <img class="image-divider" src="src/assets/divider.png" />
   <br>
-
+  
+  <div *ngIf="router.url === '/'">
+       
+    <div class="ctImg">
+		<img class="img-fluid" src="src/assets/homepageimage.jpeg">
+	</div>
+</div>
+	
   <h1>Lets save a life, if we can!</h1>
 
   <!-- <img id="pic" src="../assets/blood.jpg" width=400px> -->
@@ -93,7 +100,7 @@
         <div class="col-xs-6 col-md-3">
           <h6>Quick Links</h6>
           <ul class="footer-links">
-            <li><a href="/about-us" routerLink="about-us">About Us</a></li>
+            <li><a href="/about-us" routerLink= "about-us">About Us!!</a></li>
             <li><a href="/contact" routerLink="contact">Contact Us</a></li>
             <li><a href="">Contribute</a></li>
             <li><a href="">Privacy Policy</a></li>
