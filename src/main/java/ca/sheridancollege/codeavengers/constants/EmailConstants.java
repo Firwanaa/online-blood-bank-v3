@@ -3,11 +3,11 @@ package ca.sheridancollege.codeavengers.constants;
 public class EmailConstants {
 	public static final String SIMPLE_MAIL_TRANSFER_PROTOCOL = "smtp";
 	// obbca@outlook.com //same password
-	public static final String USERNAME = "online.blood.ca@outlook.com";
-	public static final String PASSWORD = "N8NLh6JeqA8nz7R";
-	public static final String FROM_EMAIL = "online.blood.ca@outlook.com";
+	public static final String USERNAME = "<email>";
+	public static final String PASSWORD = "<password>";
+	public static final String FROM_EMAIL = "<from-email>";
 	public static final String CC_EMAIL = "";
-	public static final String EMAIL_SUBJECT = "Online BloodBank - CA";
+	public static final String EMAIL_SUBJECT = "email subject";
 	public static final String GMAIL_SMTP_SERVER = "smtp-mail.outlook.com";
 	public static final String SMTP_HOST = "mail.smtp.host";
 	public static final String SMTP_AUTH = "mail.smtp.auth";
