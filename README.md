@@ -1,5 +1,5 @@
 # online-blood-bank-v3
-A Capstone project: An Idea to create an Online Banking System 
+A Capstone project: An Idea to create an Online Blood Banking System 
 
 
 ### Some Git tips for the team 🧐
